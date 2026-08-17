@@ -507,7 +507,26 @@ nav.links a.nav-cta { font-size: 12.5px; padding: 21px 44px; white-space: nowrap
   70% { opacity: 1; transform: translate(5px, 4px) rotate(1deg) scale(1.01); }
   100% { opacity: 1; transform: none; }
 }
-@media (max-width: 800px) { .flask-wrap { display: none; } .compound .cstep { opacity: 1; transform: none; animation: none !important; } }
+@media (max-width: 800px) {
+  /* mobile: compact pour - flask draws, tips, steps cascade out */
+  .flask-wrap { position: relative; left: auto; top: auto; width: 92px; margin: -30px auto 22px; }
+  .flask-art { width: 92px; }
+  .compound.active .flask-art path { transition-duration: 1.1s; transition-delay: 0.2s; }
+  .compound.active .flask-art path.f2 { transition-delay: 0.7s; }
+  .compound.active .flask-art path.f3 { transition-delay: 0.95s; }
+  .compound.active .flask-art { animation: flaskTip 0.9s var(--ease) 1.5s forwards; }
+  .pour-words { display: none; }
+  .compound .cstep { transform: translateY(-44px) scale(0.92); }
+  .compound.active .cstep { animation: stepPourM 0.8s var(--ease) forwards; }
+  .compound.active .cstep:nth-child(1) { animation-delay: 2s; }
+  .compound.active .cstep:nth-child(2) { animation-delay: 2.35s; }
+  .compound.active .cstep:nth-child(3) { animation-delay: 2.7s; }
+  @keyframes stepPourM {
+    0% { opacity: 0; transform: translateY(-44px) scale(0.92); }
+    70% { opacity: 1; transform: translateY(4px) scale(1.005); }
+    100% { opacity: 1; transform: none; }
+  }
+}
 .flask-art path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .compound.active .flask-art path { transition: stroke-dashoffset 2.2s var(--ease) 0.3s; stroke-dashoffset: 0; }
 .compound.active .flask-art path.f2 { transition-delay: 1.4s; }
@@ -1810,7 +1829,7 @@ if (!reduced) {
   const CODES = ['MANDI', 'VIP', 'DRMANDI'];
   const overlay = document.createElement('div');
   overlay.className = 'menu-modal'; overlay.id = 'vipModal';
-  overlay.innerHTML = '<div class="menu-panel" style="grid-template-columns:1fr; height:auto; max-height:88vh;">' +
+  overlay.innerHTML = '<div class="menu-panel" style="grid-template-columns:1fr; height:min(760px, 88vh);">' +
     '<button class="menu-close" id="vipClose">&times;</button>' +
     '<div class="menu-body" style="padding-bottom:40px;">' +
     '<h3>The Private <em>Gallery.</em></h3>' +

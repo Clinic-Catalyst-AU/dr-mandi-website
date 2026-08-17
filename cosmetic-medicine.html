@@ -804,7 +804,7 @@ if (!reduced) {
   const CODES = ['MANDI', 'VIP', 'DRMANDI'];
   const overlay = document.createElement('div');
   overlay.className = 'menu-modal'; overlay.id = 'vipModal';
-  overlay.innerHTML = '<div class="menu-panel" style="grid-template-columns:1fr; height:auto; max-height:88vh;">' +
+  overlay.innerHTML = '<div class="menu-panel" style="grid-template-columns:1fr; height:min(760px, 88vh);">' +
     '<button class="menu-close" id="vipClose">&times;</button>' +
     '<div class="menu-body" style="padding-bottom:40px;">' +
     '<h3>The Private <em>Gallery.</em></h3>' +
