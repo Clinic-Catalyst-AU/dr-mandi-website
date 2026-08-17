@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cosmetic Medicine - Dr Mandi Cosmetic Skin Clinic</title>
+<script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -765,10 +766,16 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
 
 <script>
 
-/* always open at the top (unless deep-linked to an anchor) */
-if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-if (!location.hash) scrollTo(0, 0);
-addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
+/* always open at the top (unless deep-linked to a real anchor) */
+{
+  const wantTop = !location.hash || location.hash === '#';
+  let userMoved = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => userMoved = true, { passive: true, once: true }));
+  const toTop = () => { if (wantTop && !userMoved && scrollY > 0) scrollTo(0, 0); };
+  if (wantTop) scrollTo(0, 0);
+  addEventListener('pageshow', toTop);
+  addEventListener('load', () => { toTop(); setTimeout(toTop, 120); setTimeout(toTop, 600); });
+}
 const fine = matchMedia('(pointer: fine)').matches;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
