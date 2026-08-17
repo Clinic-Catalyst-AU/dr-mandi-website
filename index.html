@@ -687,6 +687,13 @@ nav.links a.nav-cta { font-size: 12.5px; padding: 21px 44px; white-space: nowrap
 .mrow .mnote { display: block; font-family: var(--sans); font-size: 11px; opacity: 0.5; margin-top: 3px; font-weight: 300; letter-spacing: 0.02em; }
 .mrow .dots { flex: 1; border-bottom: 1px dotted rgba(216,196,156,0.35); transform: translateY(-4px); min-width: 30px; }
 .mrow .mp { font-family: var(--serif); font-size: 1.1rem; color: var(--gold-light); white-space: nowrap; }
+.mrow .mrow-book {
+  flex-shrink: 0; margin-left: 14px; padding: 6px 13px; border-radius: 100px;
+  border: 1px solid rgba(216,196,156,0.45); color: var(--gold-light);
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+  transition: all 0.3s;
+}
+.mrow .mrow-book:hover { background: var(--gold); color: var(--choc-deep); border-color: var(--gold); }
 .menu-consult { max-width: 480px; }
 .menu-consult .pull {
   font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.5;
@@ -1051,7 +1058,7 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
     <div class="lb-title" id="lbTitle"></div>
     <button class="lb-close" id="lbClose" aria-label="Close video">&times;</button>
     <video id="lbVid" controls playsinline></video>
-    <a class="btn btn-gold lb-book" href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" target="_blank" rel="noopener"><span class="shine"></span>Book this treatment now <span class="arr">&rarr;</span></a>
+    <a class="btn btn-gold lb-book" id="lbBook" href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" target="_blank" rel="noopener"><span class="shine"></span>Book this treatment now <span class="arr">&rarr;</span></a>
   </div>
 </div>
 
@@ -1707,6 +1714,8 @@ if (fine && !reduced) {
     row.addEventListener('click', e => {
       e.preventDefault();
       lbTitle.textContent = row.dataset.lbtitle || (row.querySelector('h3') ? row.querySelector('h3').textContent : '');
+      const lbB = document.getElementById('lbBook');
+      if (lbB) lbB.href = row.dataset.book || 'https://bookings.gettimely.com/drmandicosmeticskinclinic/book';
       lbVid.src = row.dataset.video;
       lb.classList.add('open');
       lbVid.play().catch(() => {});
@@ -1878,7 +1887,7 @@ if (!reduced) {
     body.innerHTML = `<h3>${cat.tab.replace(/ (?=[^ ]*$)/, ' <em>') + (cat.tab.includes(' ') ? '</em>' : '')}.</h3>
       <div class="cat-sub">${cat.sub}</div>` +
       cat.groups.map(g => `<div class="mgroup"><h4>${g.h}</h4>` +
-        g.rows.map(r => `<div class="mrow"><span class="mn">${r[0]}${r[1] ? `<span class="mnote">${r[1]}</span>` : ''}</span><span class="dots"></span><span class="mp">${r[2]}</span></div>`).join('') +
+        g.rows.map(r => `<div class="mrow"><span class="mn">${r[0]}${r[1] ? `<span class="mnote">${r[1]}</span>` : ''}</span><span class="dots"></span><span class="mp">${r[2]}</span><a class="mrow-book" href="${r[3] || 'https://bookings.gettimely.com/drmandicosmeticskinclinic/book'}" target="_blank" rel="noopener">Book</a></div>`).join('') +
       `</div>`).join('');
     body.scrollTop = 0;
   };
