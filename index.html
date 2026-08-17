@@ -906,6 +906,50 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
 @media (max-width: 640px) { .bot-fab { right: 16px; bottom: 16px; } .bot-panel { right: 16px; bottom: 88px; } }
 
 
+
+/* ============ SHOP EDIT (carousel teaser) ============ */
+.shop-sec { padding: 130px 0 140px; position: relative; overflow: hidden; }
+.shop-head { text-align: center; margin-bottom: 56px; padding: 0 6vw; }
+.shop-head h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin-top: 26px; }
+.shop-head p { max-width: 520px; margin: 18px auto 0; color: rgba(36,24,17,0.7); font-size: 15.5px; }
+.shop-wrap { position: relative; max-width: 1280px; margin: 0 auto; padding: 0 6vw; }
+.shop-track {
+  display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth;
+  padding: 10px 4px 26px;
+}
+.shop-track::-webkit-scrollbar { display: none; }
+.shop-card {
+  flex: 0 0 250px; scroll-snap-align: start;
+  background: var(--linen-deep); border: 1px solid rgba(43,28,17,0.12);
+  padding: 22px 22px 26px; position: relative; overflow: hidden;
+  transition: border-color 0.5s, transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+.shop-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 30px 50px -28px rgba(31,20,9,0.3); }
+.shop-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.6s var(--ease); }
+.shop-card:hover::before { transform: scaleX(1); }
+.shop-card .sc-img { aspect-ratio: 1; background: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; overflow: hidden; }
+.shop-card .sc-img img { width: 86%; height: 86%; object-fit: contain; transition: transform 0.8s var(--ease); }
+.shop-card:hover .sc-img img { transform: scale(1.06); }
+.shop-card .sc-brand { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; color: var(--gold-deep); }
+.shop-card .sc-name { font-family: var(--serif); font-size: 1.18rem; line-height: 1.25; margin: 7px 0 3px; min-height: 2.5em; }
+.shop-card .sc-tag { font-family: var(--serif); font-style: italic; font-size: 12.5px; opacity: 0.6; }
+.shop-card .sc-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; }
+.shop-card .sc-price { font-family: var(--serif); font-size: 1.15rem; color: var(--gold-deep); }
+.shop-card .sc-go { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+.shop-arrow {
+  position: absolute; top: 42%; z-index: 5; width: 46px; height: 46px; border-radius: 50%;
+  background: var(--linen); border: 1px solid var(--gold); color: var(--gold-deep);
+  font-size: 18px; cursor: pointer; transition: all 0.35s; font-family: var(--serif);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 24px -8px rgba(31,20,9,0.25);
+}
+.shop-arrow:hover { background: var(--gold); color: var(--choc-deep); }
+.shop-arrow.sa-prev { left: calc(6vw - 23px); }
+.shop-arrow.sa-next { right: calc(6vw - 23px); }
+.shop-foot { text-align: center; margin-top: 26px; font-family: var(--serif); font-style: italic; font-size: 14.5px; opacity: 0.6; }
+@media (max-width: 700px) { .shop-card { flex-basis: 210px; } .shop-arrow { display: none; } }
+
 /* mobile hamburger + menu */
 .burger { display: none; background: none; border: 0; cursor: pointer; width: 42px; height: 42px; position: relative; z-index: 220; flex-shrink: 0; padding: 0; }
 .burger span { display: block; width: 24px; height: 2px; background: var(--gold-deep); margin: 5px auto; transition: all 0.35s var(--ease); }
@@ -998,7 +1042,7 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
       <a href="#mandi">Dr Mandi</a>
       <a href="#gallery" class="lock">Gallery</a>
       <a href="#" data-open-menu>Pricing</a>
-      <a href="#">Shop</a>
+      <a href="#shop">Shop</a>
       <a href="#book" class="btn btn-solid nav-cta"><span class="shine"></span>Book a Consultation</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -1010,7 +1054,7 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
   <a class="mm-link" href="index.html#mandi"><span>Dr Mandi</span><span class="mm-num">iii.</span></a>
   <a class="mm-link" href="index.html#gallery"><span>Private Gallery</span><span class="mm-num">iv.</span></a>
   <a class="mm-link" href="#" data-open-menu><span>Pricing</span><span class="mm-num">v.</span></a>
-  <a class="mm-link" href="#"><span>Shop</span><span class="mm-num">vi.</span></a>
+  <a class="mm-link" href="#shop"><span>Shop</span><span class="mm-num">vi.</span></a>
   <a href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" class="btn btn-gold"><span class="shine"></span>Book a consultation <span class="arr">&rarr;</span></a>
   <div class="mm-contact">Shop C, 1 Woodward Way, Caroline Springs VIC 3023<br>03 9937 0733 · 0494 304 877</div>
 </div>
@@ -1334,6 +1378,80 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
   </div>
 </section>
 
+
+<!-- SHOP EDIT -->
+<section class="shop-sec" id="shop">
+  <span class="ghost" data-speed="0.05" style="top: 6%; right: -2%;">ritual</span>
+  <div class="shop-head reveal">
+    <span class="label bare">The shop edit</span>
+    <h2>Recommended by <em>Dr Mandi.</em></h2>
+    <p>Medical-grade skincare, stocked in clinic and chosen for real skin concerns - the same formulas your treatment plan is built around.</p>
+  </div>
+  <div class="shop-wrap reveal d1">
+    <button class="shop-arrow sa-prev" id="shopPrev" aria-label="Previous products">&lsaquo;</button>
+    <div class="shop-track" id="shopTrack">
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/zo-skin-health-growth-factor-serum" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/growth-factor-serum.jpg" alt="Growth Factor Serum" loading="lazy"></div>
+        <div class="sc-brand">ZO Skin Health</div>
+        <div class="sc-name">Growth Factor Serum</div>
+        <div class="sc-tag">clinic flagship</div>
+        <div class="sc-row"><span class="sc-price">$290</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/mela-cream" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/mela-cream.jpg" alt="Mela Cream" loading="lazy"></div>
+        <div class="sc-brand">Dermaceutic</div>
+        <div class="sc-name">Mela Cream</div>
+        <div class="sc-tag">for pigmentation</div>
+        <div class="sc-row"><span class="sc-price">$205</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/zo-skin-health-daily-power-defense" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/daily-power-defense.jpg" alt="Daily Power Defense" loading="lazy"></div>
+        <div class="sc-brand">ZO Skin Health</div>
+        <div class="sc-name">Daily Power Defense</div>
+        <div class="sc-tag">daily antioxidant</div>
+        <div class="sc-row"><span class="sc-price">$170</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/dermaceutic-tri-vita-c30" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/tri-vita-c30.jpg" alt="Tri Vita C30" loading="lazy"></div>
+        <div class="sc-brand">Dermaceutic</div>
+        <div class="sc-name">Tri Vita C30</div>
+        <div class="sc-tag">vitamin C radiance</div>
+        <div class="sc-row"><span class="sc-price">$160</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/zo-skin-health-retinol-skin-brightener" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/retinol-brightener.jpg" alt="Retinol Skin Brightener" loading="lazy"></div>
+        <div class="sc-brand">ZO Skin Health</div>
+        <div class="sc-name">Retinol Skin Brightener</div>
+        <div class="sc-tag">for tone & brightness</div>
+        <div class="sc-row"><span class="sc-price">$190</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/neoretin-booster-fluid" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/neoretin-booster.jpg" alt="Booster Fluid" loading="lazy"></div>
+        <div class="sc-brand">Neoretin</div>
+        <div class="sc-name">Booster Fluid</div>
+        <div class="sc-tag">for pigmentation</div>
+        <div class="sc-row"><span class="sc-price">$112</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/hyal-ceutic" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/hyal-ceutic.jpg" alt="Hyal Ceutic" loading="lazy"></div>
+        <div class="sc-brand">Dermaceutic</div>
+        <div class="sc-name">Hyal Ceutic</div>
+        <div class="sc-tag">for hydration</div>
+        <div class="sc-row"><span class="sc-price">$114</span><span class="sc-go">Shop</span></div>
+      </a>
+      <a class="shop-card" href="https://www.drmandicosmeticsc.com.au/shop/p/biretix-duo" target="_blank" rel="noopener">
+        <div class="sc-img"><img src="assets/shop/biretix-duo.jpg" alt="Biretix Duo" loading="lazy"></div>
+        <div class="sc-brand">Biretix</div>
+        <div class="sc-name">Biretix Duo</div>
+        <div class="sc-tag">for acne-prone skin</div>
+        <div class="sc-row"><span class="sc-price">$55.50</span><span class="sc-go">Shop</span></div>
+      </a>
+    </div>
+    <button class="shop-arrow sa-next" id="shopNext" aria-label="More products">&rsaquo;</button>
+  </div>
+  <p class="shop-foot reveal d2">A curated edit - the full range is available in clinic and through the online shop.</p>
+</section>
+
 <!-- CONSULT CTA -->
 <section class="consult" id="book">
   <span class="ghost" data-speed="0.06" style="top: 14%; right: 2%;">begin</span>
@@ -1383,7 +1501,7 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
         <a href="cosmetic-medicine.html">Treatments</a>
         <a href="#concerns">Concerns</a>
         <a href="#mandi">About</a>
-        <a href="#">Shop</a>
+        <a href="#shop">Shop</a>
       </div>
       <div>
         <h5>Connect</h5>
@@ -1867,6 +1985,28 @@ if (!reduced) {
     document.querySelectorAll('.mm-link').forEach(a => a.addEventListener('click', () => {
       setTimeout(() => document.body.classList.remove('mob-open'), 150);
     }));
+  }
+}
+
+/* shop carousel - auto-advance, pause on interaction */
+{
+  const track = document.getElementById('shopTrack');
+  if (track) {
+    const step = () => track.querySelector('.shop-card').getBoundingClientRect().width + 22;
+    const max = () => track.scrollWidth - track.clientWidth - 10;
+    document.getElementById('shopNext').addEventListener('click', () => {
+      track.scrollLeft >= max() ? track.scrollTo({left: 0}) : track.scrollBy({left: step()});
+    });
+    document.getElementById('shopPrev').addEventListener('click', () => track.scrollBy({left: -step()}));
+    let hold = false;
+    ['pointerenter','pointerdown','touchstart'].forEach(ev => track.addEventListener(ev, () => hold = true, {passive:true}));
+    track.addEventListener('pointerleave', () => hold = false);
+    setInterval(() => {
+      if (hold || !track.closest('body')) return;
+      const r = track.getBoundingClientRect();
+      if (r.top > innerHeight || r.bottom < 0) return;
+      track.scrollLeft >= max() ? track.scrollTo({left: 0, behavior: 'smooth'}) : track.scrollBy({left: step(), behavior: 'smooth'});
+    }, 3500);
   }
 }
 </script>
