@@ -84,6 +84,8 @@ body.cur-hover .cur-ring { width: 64px; height: 64px; background: rgba(216,196,1
 body.cur-view .cur-ring { width: 84px; height: 84px; background: rgba(216,196,156,0.9); border-color: var(--gold); }
 body.cur-view .cur-ring .cur-label { opacity: 1; }
 body.cur-view .cur-dot { opacity: 0; }
+body.cursor-on .ba-slider { cursor: ew-resize; }
+body.ba-hover .cur-ring, body.ba-hover .cur-dot { opacity: 0 !important; }
 
 /* Scroll progress */
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 300; background: transparent; }
@@ -144,7 +146,7 @@ body.cur-view .cur-dot { opacity: 0; }
 
 /* ============ NAV ============ */
 header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.5s var(--ease); }
-header .bar { display: flex; align-items: center; justify-content: space-between; padding: 26px 6vw; transition: all 0.5s var(--ease); }
+header .bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 4vw; transition: all 0.5s var(--ease); }
 header.scrolled { background: rgba(247,243,234,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(43,28,17,0.08); }
 header.scrolled .bar { padding: 16px 6vw; }
 .logo { display: flex; align-items: center; gap: 16px; }
@@ -152,13 +154,14 @@ header.scrolled .bar { padding: 16px 6vw; }
 .logo .mono-img { height: 42px; width: auto; display: block; }
 .logo .word { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; color: var(--ink); line-height: 1.5; }
 .logo .word span { display: block; font-weight: 300; opacity: 0.55; letter-spacing: 0.3em; font-size: 9px; }
-nav.links { display: flex; gap: 40px; align-items: center; }
-nav.links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; position: relative; padding: 4px 0; }
+nav.links { display: flex; gap: clamp(16px, 2vw, 34px); align-items: center; flex-wrap: nowrap; }
+nav.links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; position: relative; padding: 4px 0; white-space: nowrap; }
 nav.links a:not(.nav-cta)::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--gold-deep); transition: width 0.4s var(--ease); }
 nav.links a:hover::after { width: 100%; }
 nav.links .lock { color: var(--gold-deep); }
-.nav-cta { font-size: 11px !important; padding: 13px 26px; white-space: nowrap; line-height: 1; justify-content: center; }
-@media (max-width: 1080px) { nav.links a:not(.nav-cta) { display: none; } }
+.nav-cta { font-size: 12.5px !important; padding: 19px 40px; white-space: nowrap; line-height: 1; justify-content: center; flex-shrink: 0; }
+@media (max-width: 1300px) { nav.links a:not(.nav-cta) { font-size: 11px; letter-spacing: 0.14em; } }
+@media (max-width: 1020px) { nav.links a:not(.nav-cta) { display: none; } }
 
 /* ============ HERO ============ */
 .hero {
@@ -474,12 +477,42 @@ nav.links .lock { color: var(--gold-deep); }
 .cstep .cnum { font-family: var(--serif); font-style: italic; font-size: 2.2rem; color: var(--gold-deep); line-height: 1; margin-bottom: 14px; }
 .cstep h4 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; margin-bottom: 10px; }
 .cstep p { font-size: 13.5px; opacity: 0.68; }
-.flask-art { position: absolute; left: 4vw; bottom: 40px; width: 150px; opacity: 0.45; pointer-events: none; }
+.flask-wrap { position: absolute; left: 5vw; top: 120px; width: 150px; pointer-events: none; }
+.flask-art { position: relative; width: 150px; opacity: 0.6; display: block; transform-origin: 72% 16%; }
+.compound.active .flask-art { animation: flaskTip 1.1s var(--ease) 2.4s forwards; }
+@keyframes flaskTip { to { transform: rotate(100deg) translateY(-6px); } }
+/* the stream - words pour from the tipped mouth toward the steps */
+.pour-words { position: absolute; left: 120px; top: 26px; width: 240px; height: 300px; opacity: 0; }
+.compound.active .pour-words { opacity: 1; transition: opacity 0.4s 3.2s; }
+.pour-words span {
+  position: absolute; top: 0; left: 0;
+  font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--gold-deep);
+  opacity: 0; white-space: nowrap;
+}
+.compound.active .pour-words span { animation: pourFall 2.8s ease-in infinite; animation-delay: calc(var(--d) + 3.1s); }
+@keyframes pourFall {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-14deg) scale(0.9); }
+  10% { opacity: 0.95; }
+  65% { opacity: 0.55; }
+  100% { opacity: 0; transform: translate(calc(46px + var(--x)), 250px) rotate(4deg) scale(1.04); }
+}
+/* the steps pour out of the beaker, one after another */
+.compound .cstep { opacity: 0; transform: translate(-170px, -130px) rotate(-7deg) scale(0.8); }
+.compound.active .cstep { animation: stepPour 1s var(--ease) forwards; }
+.compound.active .cstep:nth-child(1) { animation-delay: 3.1s; }
+.compound.active .cstep:nth-child(2) { animation-delay: 3.5s; }
+.compound.active .cstep:nth-child(3) { animation-delay: 3.9s; }
+@keyframes stepPour {
+  0% { opacity: 0; transform: translate(-170px, -130px) rotate(-7deg) scale(0.8); }
+  70% { opacity: 1; transform: translate(5px, 4px) rotate(1deg) scale(1.01); }
+  100% { opacity: 1; transform: none; }
+}
+@media (max-width: 800px) { .flask-wrap { display: none; } .compound .cstep { opacity: 1; transform: none; animation: none !important; } }
 .flask-art path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .compound.active .flask-art path { transition: stroke-dashoffset 2.2s var(--ease) 0.3s; stroke-dashoffset: 0; }
 .compound.active .flask-art path.f2 { transition-delay: 1.4s; }
 .compound.active .flask-art path.f3 { transition-delay: 1.8s; }
-@media (max-width: 800px) { .comp-steps { grid-template-columns: 1fr; } .cstep { border-right: 0; border-bottom: 1px solid rgba(43,28,17,0.12); padding-bottom: 30px; } .flask-art { display: none; } }
+@media (max-width: 800px) { .comp-steps { grid-template-columns: 1fr; } .cstep { border-right: 0; border-bottom: 1px solid rgba(43,28,17,0.12); padding-bottom: 30px; } }
 
 /* ============ TREATMENTS ============ */
 .treatments { background: var(--choc); color: var(--linen); padding: 130px 0 140px; position: relative; overflow: hidden; }
@@ -802,10 +835,63 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
 .foot-base { border-top: 1px solid rgba(247,243,234,0.1); padding-top: 30px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 11.5px; opacity: 0.4; }
 @media (max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
 
+
+/* ============ AI CONCIERGE ============ */
+.bot-fab {
+  position: fixed; right: 26px; bottom: 26px; z-index: 460;
+  width: 60px; height: 60px; border-radius: 50%; cursor: pointer;
+  background: linear-gradient(160deg, #332215, var(--choc-deep));
+  border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 14px 34px -8px rgba(31,20,9,0.55), 0 0 22px rgba(179,144,90,0.25);
+  transition: transform 0.4s var(--ease);
+}
+.bot-fab:hover { transform: translateY(-4px) scale(1.05); }
+.bot-fab img { width: 46%; height: auto; }
+.bot-fab .bot-dot {
+  position: absolute; top: 3px; right: 3px; width: 11px; height: 11px; border-radius: 50%;
+  background: #8FBF7F; border: 2px solid var(--choc-deep);
+  animation: blinkDot 2.4s ease-in-out infinite;
+}
+.bot-panel {
+  position: fixed; right: 26px; bottom: 100px; z-index: 461;
+  width: min(370px, calc(100vw - 40px)); height: min(540px, 72vh);
+  background: linear-gradient(180deg, #241811, var(--choc));
+  border: 1px solid var(--gold); border-radius: 18px; overflow: hidden;
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.97);
+  transition: all 0.45s var(--ease);
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+}
+.bot-panel.open { opacity: 1; pointer-events: auto; transform: none; }
+.bot-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(216,196,156,0.25); }
+.bot-head img { height: 30px; width: auto; }
+.bot-head .bh-name { font-family: var(--serif); font-size: 1.1rem; color: var(--linen); line-height: 1.2; }
+.bot-head .bh-sub { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); opacity: 0.8; display: flex; align-items: center; gap: 6px; }
+.bot-head .bh-sub::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #8FBF7F; }
+.bot-head button { margin-left: auto; background: none; border: 0; color: var(--gold-light); font-size: 18px; cursor: pointer; font-family: var(--sans); }
+.bot-msgs { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; }
+.bot-msg { max-width: 85%; padding: 11px 15px; border-radius: 14px; font-size: 13.5px; line-height: 1.6; animation: vipPop 0.5s var(--ease); }
+.bot-msg.bm-bot { background: rgba(247,243,234,0.08); color: var(--linen); border: 1px solid rgba(216,196,156,0.2); border-bottom-left-radius: 4px; align-self: flex-start; }
+.bot-msg.bm-user { background: var(--gold); color: var(--choc-deep); border-bottom-right-radius: 4px; align-self: flex-end; }
+.bot-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 18px 12px; }
+.bot-chip {
+  border: 1px solid rgba(216,196,156,0.45); background: rgba(179,144,90,0.08); color: var(--gold-light);
+  border-radius: 100px; padding: 8px 14px; font-size: 11px; letter-spacing: 0.06em; cursor: pointer;
+  font-family: var(--sans); transition: all 0.3s;
+}
+.bot-chip:hover { background: var(--gold); color: var(--choc-deep); }
+.bot-input { display: flex; border-top: 1px solid rgba(216,196,156,0.25); }
+.bot-input input { flex: 1; background: transparent; border: 0; outline: 0; padding: 14px 18px; color: var(--linen); font-family: var(--sans); font-size: 13px; }
+.bot-input input::placeholder { color: rgba(247,243,234,0.4); }
+.bot-input button { border: 0; background: var(--gold); color: var(--choc-deep); padding: 0 22px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; cursor: pointer; font-family: var(--sans); }
+@media (max-width: 640px) { .bot-fab { right: 16px; bottom: 16px; } .bot-panel { right: 16px; bottom: 88px; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
   .reveal, .reveal-img, .manifesto .w { opacity: 1 !important; transform: none !important; clip-path: none !important; }
   .fw-text { clip-path: none !important; background: none !important; color: var(--gold-deep) !important; }
+  .compound .cstep { opacity: 1 !important; transform: none !important; }
+  .pour-words { display: none !important; }
 }
 </style>
 </head>
@@ -853,10 +939,10 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
       <span class="word">Dr Mandi <span>Cosmetic Skin Clinic</span></span>
     </a>
     <nav class="links">
-      <a href="injectables.html">Treatments</a>
-      <a href="#concerns">Skin Concerns</a>
+      <a href="cosmetic-medicine.html">Treatments</a>
+      <a href="#concerns">Concerns</a>
       <a href="#mandi">Dr Mandi</a>
-      <a href="#gallery" class="lock">Private Gallery</a>
+      <a href="#gallery" class="lock">Gallery</a>
       <a href="#" data-open-menu>Pricing</a>
       <a href="#">Shop</a>
       <a href="#book" class="btn btn-solid nav-cta"><span class="shine"></span>Book a Consultation</a>
@@ -926,7 +1012,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
     <h2>Know what you're after? <em>Explore treatments.</em><br>Not sure where to start? <em>Begin with your skin.</em></h2>
   </div>
   <div class="journey-grid">
-    <a href="injectables.html" class="journey-card jc-dark on-dark reveal tilt" data-cursor="view">
+    <a href="cosmetic-medicine.html" class="journey-card jc-dark on-dark reveal tilt" data-cursor="view">
       <span class="spot"></span>
       <div class="ba-slider" aria-label="Before and after comparison - drag to reveal">
         <img class="ba-before" src="assets/ba-prf-before.jpg" alt="Before PRF treatment">
@@ -938,7 +1024,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
         <div>
           <span class="label">I know what I'm here for</span>
           <h3>Explore our treatments</h3>
-          <p>Injectables, laser, skin treatments, regenerative medicine, threads and more - each delivered under a doctor-led plan, tailored to your skin.</p>
+          <p>Cosmetic medicine, laser, skin treatments, regenerative medicine, threads and more - each delivered under a doctor-led plan, tailored to your skin.</p>
         </div>
         <span class="go"><span class="line"></span> View treatments</span>
         <span class="num serif">I</span>
@@ -997,27 +1083,36 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
 
 <!-- COMPOUNDING -->
 <section class="compound" id="compound">
-  <svg class="flask-art" viewBox="0 0 160 200" aria-hidden="true">
+  <div class="flask-wrap" aria-hidden="true">
+  <div class="pour-words">
+    <span style="--d:0s; --x:-8px;">tailored</span>
+    <span style="--d:1.6s; --x:14px;">bespoke</span>
+    <span style="--d:3.2s; --x:-16px;">prescribed</span>
+    <span style="--d:4.8s; --x:10px;">TGA-approved</span>
+    <span style="--d:6.4s; --x:-4px;">for you</span>
+  </div>
+  <svg class="flask-art" viewBox="0 0 160 200">
     <path class="f1" pathLength="1" d="M62 22 h36 M70 22 v52 L38 148 c-6 14 2 26 16 26 h52 c14 0 22 -12 16 -26 L90 74 v-52"/>
     <path class="f2" pathLength="1" d="M52 118 h56"/>
     <path class="f3" pathLength="1" d="M66 140 c4 -6 10 -6 14 0 s10 6 14 0"/>
   </svg>
+  </div>
   <div class="inner">
     <span class="label bare reveal">The compounding difference</span>
     <h2 class="reveal d1">Designed for your skin.<br><em>Compounded in-house.</em></h2>
     <p class="reveal d2">Dr Mandi works with a compounding pharmacy - so your treatment isn't lifted off a shelf. High-quality, TGA-approved active ingredients, prescribed by a doctor in clinic, designed around the clinical outcomes set for your skin - and compounded in-house, for you and only you.</p>
     <div class="comp-steps">
-      <div class="cstep reveal">
+      <div class="cstep">
         <div class="cnum">i.</div>
         <h4>Assessed</h4>
         <p>A proper, doctor-led look at your skin - before anything else.</p>
       </div>
-      <div class="cstep reveal d1">
+      <div class="cstep">
         <div class="cnum">ii.</div>
         <h4>Designed</h4>
         <p>Your clinical outcomes, set with Dr Mandi - not a standard protocol.</p>
       </div>
-      <div class="cstep reveal d2">
+      <div class="cstep">
         <div class="cnum">iii.</div>
         <h4>Compounded</h4>
         <p>Your formulation, prepared in-house - made for you, and only you.</p>
@@ -1038,9 +1133,9 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
       <p class="reveal d2">Each treatment sits inside a doctor-led plan - assessed first, tailored always, and delivered with medical-grade, TGA-approved equipment.</p>
     </div>
     <div class="treat-list">
-      <a class="treat-row reveal" href="injectables.html" data-cursor="view" data-num="i." data-video="assets/reels/biofiller-education-reel.mp4" data-word="natural, balanced, yours">
+      <a class="treat-row reveal" href="cosmetic-medicine.html" data-cursor="view" data-num="i." data-video="assets/reels/biofiller-education-reel.mp4" data-word="natural, balanced, yours">
         <span class="idx">No. 01</span>
-        <div><h3>Injectables &amp; Cosmetic Medicine</h3><div class="desc">Wrinkle reduction, lip enhancement and volume restoration - discussed properly at consultation, always with a natural result in mind.</div></div>
+        <div><h3>Cosmetic Medicine</h3><div class="desc">Wrinkle reduction, lip enhancement and volume restoration - discussed properly at consultation, always with a natural result in mind.</div></div>
         <span class="arrow">&rarr;</span>
       </a>
       <a class="treat-row reveal" href="#" data-cursor="view" data-num="ii." data-video="assets/reels/laser-resurfacing-reel.mp4" data-word="light, tone &amp; clarity">
@@ -1069,7 +1164,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
         <span class="arrow">&rarr;</span>
       </a>
     </div>
-    <p class="treat-note reveal">Advertising rules mean injectable brands and prices are never listed publicly - your options, suitability and pricing are discussed properly with Dr Mandi at consultation.</p>
+    <p class="treat-note reveal">Advertising rules mean prescription brand names and prices are never listed publicly - your options, suitability and pricing are discussed properly with Dr Mandi at consultation.</p>
     <div class="reveal" style="margin-top: 34px;"><a href="#" class="btn btn-ghost magnetic" data-open-menu><span class="shine"></span>View the treatment menu <span class="arr">&rarr;</span></a></div>
   </div>
 </section>
@@ -1160,13 +1255,13 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
     </div>
     <span class="label reveal" style="justify-content:center; display:inline-flex;">For consulted patients</span>
     <h2 class="reveal d1">The private gallery</h2>
-    <p class="lede reveal d2">Our injectables gallery is shared privately with patients after their consultation - a considered look at Dr Mandi's work, in keeping with Australian advertising regulations. Your access details are provided at the clinic.</p>
+    <p class="lede reveal d2">Our cosmetic treatment gallery is shared privately with patients after their consultation - a considered look at Dr Mandi's work, in keeping with Australian advertising regulations. Your access details are provided at the clinic.</p>
     <div class="teaser-row reveal d2">
       <div class="teaser"><span class="tag">lips</span></div>
       <div class="teaser"><span class="tag">cheeks</span></div>
       <div class="teaser"><span class="tag">balance</span></div>
     </div>
-    <form class="gate reveal d3" onsubmit="return false;">
+    <form class="gate reveal d3">
       <input type="password" placeholder="Enter your access code" aria-label="Gallery access code" id="gateInput">
       <button type="submit">Enter</button>
     </form>
@@ -1188,7 +1283,22 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
   </div>
 </section>
 
-</main>
+</main>\n
+<div class="bot-fab" id="botFab" aria-label="Chat with the clinic"><img src="assets/dm-gold.png" alt=""><span class="bot-dot"></span></div>
+<div class="bot-panel" id="botPanel" role="dialog" aria-label="Clinic concierge chat">
+  <div class="bot-head">
+    <img src="assets/dm-gold.png" alt="">
+    <div><div class="bh-name">The Concierge</div><div class="bh-sub">Dr Mandi Cosmetic Skin Clinic</div></div>
+    <button id="botClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="bot-msgs" id="botMsgs"></div>
+  <div class="bot-chips" id="botChips"></div>
+  <form class="bot-input" id="botForm">
+    <input type="text" id="botText" placeholder="Ask about your skin..." autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+</div>
+
 
 <footer class="on-dark">
   <div class="wrap">
@@ -1205,8 +1315,8 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
       </div>
       <div>
         <h5>Explore</h5>
-        <a href="injectables.html">Treatments</a>
-        <a href="#concerns">Skin Concerns</a>
+        <a href="cosmetic-medicine.html">Treatments</a>
+        <a href="#concerns">Concerns</a>
         <a href="#mandi">About</a>
         <a href="#">Shop</a>
       </div>
@@ -1336,6 +1446,8 @@ document.querySelectorAll('.ba-slider').forEach(sl => {
     sl.style.setProperty('--pos', p + '%');
   };
   let dragging = false;
+  sl.addEventListener('pointerenter', () => document.body.classList.add('ba-hover'));
+  sl.addEventListener('pointerleave', () => document.body.classList.remove('ba-hover'));
   sl.addEventListener('pointerdown', e => {
     dragging = true; sl.setPointerCapture(e.pointerId); set(e.clientX);
     e.preventDefault(); e.stopPropagation();
@@ -1446,7 +1558,7 @@ if (!reduced) {
 /* Treatment Menu popup */
 {
   const MENU = [
-    { id: 'cosmetic', tab: 'Cosmetic Medicine', num: 'i.', sub: 'Injectables, skin boosters & collagen stimulators', consult: true },
+    { id: 'cosmetic', tab: 'Cosmetic Medicine', num: 'i.', sub: 'Prescription treatments, skin boosters & collagen stimulators', consult: true },
     { id: 'regen', tab: 'Regenerative', num: 'ii.', sub: 'PRP & PRF - your skin’s own biology', groups: [
       { h: 'PRP · Skin & Hair Restoration', rows: [
         ['PRP + LED', 'Pack of 3 - $1,500 ($500 ea)', '$550'],
@@ -1546,7 +1658,7 @@ if (!reduced) {
             </div>
             <div class="vip-copy">
               <h5>The VIP Gallery</h5>
-              <p>A private before-and-after gallery of Dr Mandi's injectable work - unlocked for you after your consultation.</p>
+              <p>A private before-and-after gallery of Dr Mandi's cosmetic work - unlocked for you after your consultation.</p>
               <a href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" class="btn btn-gold"><span class="shine"></span>Consult now · unlock access <span class="arr">&rarr;</span></a>
             </div>
           </div>
@@ -1597,6 +1709,89 @@ if (!reduced) {
     g.addEventListener('focus', () => sec.classList.add('gate-focus'));
     g.addEventListener('blur', () => sec.classList.remove('gate-focus'));
   }
+}
+
+/* AI Concierge - scripted preview (production wires to the clinic's GHL conversational AI) */
+{
+  const fab = document.getElementById('botFab'), panel = document.getElementById('botPanel');
+  const msgs = document.getElementById('botMsgs'), chips = document.getElementById('botChips');
+  const form = document.getElementById('botForm'), input = document.getElementById('botText');
+  const QA = [
+    { chip: 'How do I start?', k: /start|begin|new|first/i,
+      a: "That's completely okay - it's exactly what the skin assessment is for. We take a proper look at your skin, listen to what's bothering you, and build a tailored plan at your own pace, with no pressure. Your consultation is $99, with a $50 deposit to secure your time." },
+    { chip: 'Can you help with pigmentation?', k: /pigment|melasma|sun ?spot|dark spot/i,
+      a: "Pigmentation is one of the concerns we most love working with, and Dr Mandi has a special interest in it. Rather than reaching for one machine, we assess your skin first and build a tailored, medical-grade plan around it." },
+    { chip: 'Where are you?', k: /where|address|location|find|park/i,
+      a: "We're at Shop C, 1 Woodward Way, Caroline Springs 3023 - and we look after clients from right across Melbourne's western suburbs. You can also call us on 03 9937 0733." },
+    { chip: 'Book a consultation', k: /book|appoint|consult|price|cost/i,
+      a: "Lovely - the best first step is a doctor-led skin assessment with Dr Mandi. Tap below and choose a time that suits you.", book: true }
+  ];
+  const add = (text, who, book) => {
+    const d = document.createElement('div');
+    d.className = 'bot-msg bm-' + who; d.textContent = text;
+    msgs.appendChild(d);
+    if (book) {
+      const b = document.createElement('a');
+      b.href = 'https://bookings.gettimely.com/drmandicosmeticskinclinic/book';
+      b.className = 'bot-msg bm-user'; b.style.textDecoration = 'none'; b.style.fontWeight = '600';
+      b.textContent = 'Book your assessment \u2192';
+      msgs.appendChild(b);
+    }
+    msgs.scrollTop = msgs.scrollHeight;
+  };
+  const answer = q => {
+    add(q, 'user');
+    const hit = QA.find(x => x.k.test(q));
+    setTimeout(() => {
+      if (hit) add(hit.a, 'bot', hit.book);
+      else add("I'd love to help with that properly - it's exactly the kind of thing Dr Mandi goes through at your consultation. In the meantime, our team can call you back, or you can book a skin assessment any time.", 'bot', true);
+    }, 600);
+  };
+  QA.forEach(x => {
+    const c = document.createElement('button');
+    c.type = 'button'; c.className = 'bot-chip'; c.textContent = x.chip;
+    c.addEventListener('click', () => answer(x.chip));
+    chips.appendChild(c);
+  });
+  let greeted = false;
+  fab.addEventListener('click', () => {
+    panel.classList.add('open');
+    if (!greeted) { greeted = true; setTimeout(() => add("Welcome to Dr Mandi Cosmetic Skin Clinic. I'm the clinic concierge - ask me anything, or tap a question below. Every plan here starts with a proper, doctor-led skin assessment.", 'bot'), 350); }
+  });
+  document.getElementById('botClose').addEventListener('click', () => panel.classList.remove('open'));
+  form.addEventListener('submit', e => { e.preventDefault(); const v = input.value.trim(); if (v) { answer(v); input.value = ''; } });
+}
+
+/* Demo access code for the private gallery gates - code: MANDI (also VIP) */
+{
+  const CODES = ['MANDI', 'VIP', 'DRMANDI'];
+  const overlay = document.createElement('div');
+  overlay.className = 'menu-modal'; overlay.id = 'vipModal';
+  overlay.innerHTML = '<div class="menu-panel" style="grid-template-columns:1fr; height:auto; max-height:88vh;">' +
+    '<button class="menu-close" id="vipClose">&times;</button>' +
+    '<div class="menu-body" style="padding-bottom:40px;">' +
+    '<h3>The Private <em>Gallery.</em></h3>' +
+    '<div class="cat-sub">Welcome - thank you for consulting with us</div>' +
+    '<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-top:10px;">' +
+    ['ba-prf-before.jpg|Before · PRF','ba-prf-after.jpg|Four weeks after first PRF session','ba-acne-before.jpg|Before · acne program','ba-acne-after.jpg|After · acne program']
+      .map(x => { const p = x.split('|'); return '<figure style="margin:0;"><img src="assets/' + p[0] + '" style="width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid rgba(216,196,156,0.45);"><figcaption style="font-family:var(--serif); font-style:italic; font-size:12.5px; opacity:0.7; padding-top:6px;">' + p[1] + '</figcaption></figure>'; }).join('') +
+    '</div>' +
+    '<p style="font-family:var(--serif); font-style:italic; opacity:0.55; margin-top:22px; font-size:14px;">A preview of the private gallery experience - the full gallery is curated with Dr Mandi and shared only with consulted patients.</p>' +
+    '</div></div>';
+  document.body.appendChild(overlay);
+  document.getElementById('vipClose').addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+  document.querySelectorAll('.gate').forEach(g => {
+    const inp = g.querySelector('input');
+    g.addEventListener('submit', e => {
+      e.preventDefault();
+      if (CODES.includes((inp.value || '').trim().toUpperCase())) { overlay.classList.add('open'); inp.value = ''; }
+      else {
+        inp.value = ''; inp.placeholder = 'Provided after your consultation';
+        g.animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}], {duration:280});
+      }
+    });
+  });
 }
 </script>
 </body>
