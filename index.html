@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dr Mandi Cosmetic Skin Clinic - Doctor-led cosmetic medicine, Caroline Springs</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -148,6 +149,7 @@ header.scrolled { background: rgba(247,243,234,0.88); backdrop-filter: blur(14px
 header.scrolled .bar { padding: 16px 6vw; }
 .logo { display: flex; align-items: center; gap: 16px; }
 .logo .mono { font-family: var(--serif); font-size: 30px; letter-spacing: 0.04em; color: var(--gold-deep); line-height: 1; }
+.logo .mono-img { height: 42px; width: auto; display: block; }
 .logo .word { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; color: var(--ink); line-height: 1.5; }
 .logo .word span { display: block; font-weight: 300; opacity: 0.55; letter-spacing: 0.3em; font-size: 9px; }
 nav.links { display: flex; gap: 40px; align-items: center; }
@@ -252,8 +254,19 @@ nav.links .lock { color: var(--gold-deep); }
 .stamp .stamp-dot {
   position: absolute; inset: 42px; border-radius: 50%;
   border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 15px; color: var(--gold-deep);
   animation: spinSlow 22s linear infinite reverse;
+}
+.stamp .stamp-dot img { width: 46%; height: auto; }
+.stamp svg { animation: stampGlow 3.4s ease-in-out infinite; }
+@keyframes stampGlow {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(216,196,156,0.35)); }
+  50% { filter: drop-shadow(0 0 7px rgba(216,196,156,0.95)) drop-shadow(0 0 16px rgba(179,144,90,0.5)); }
+}
+.stamp .orb {
+  position: absolute; top: -4px; left: 50%; margin-left: -4px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #F4E7C3;
+  box-shadow: 0 0 10px 3px rgba(216,196,156,0.95), 0 0 22px 8px rgba(179,144,90,0.45);
 }
 @media (max-width: 900px) {
   .video-card { left: -6px; bottom: 22px; width: 42%; }
@@ -616,6 +629,43 @@ nav.links .lock { color: var(--gold-deep); }
 .menu-foot > * { pointer-events: auto; }
 .menu-foot .mf-note { font-family: var(--serif); font-style: italic; font-size: 13px; opacity: 0.55; }
 .menu-body { padding-bottom: 110px; }
+/* VIP gallery tease inside Cosmetic Medicine tab */
+.vip-tease {
+  display: flex; gap: 34px; align-items: center; flex-wrap: wrap;
+  border: 1px solid rgba(216,196,156,0.45); background: rgba(179,144,90,0.07);
+  padding: 30px 34px; margin-top: 36px; position: relative;
+  animation: vipPop 0.8s var(--ease) 0.25s backwards;
+}
+@keyframes vipPop { 0% { opacity: 0; transform: translateY(18px) scale(0.92); } 70% { transform: translateY(-3px) scale(1.015); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+.vip-tiles { position: relative; width: 150px; height: 120px; flex-shrink: 0; }
+.vip-tiles .vt {
+  position: absolute; top: 8px; left: 38px; width: 74px; height: 96px;
+  border: 1px solid rgba(216,196,156,0.5); overflow: hidden;
+  background: radial-gradient(60% 50% at 50% 30%, rgba(216,196,156,0.45), transparent 70%), linear-gradient(160deg, #4A3423, #241811);
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px;
+  transition: transform 0.6s var(--ease);
+  box-shadow: 0 14px 26px -10px rgba(0,0,0,0.5);
+}
+.vip-tiles .vt span { font-family: var(--serif); font-style: italic; font-size: 11px; color: var(--gold-light); opacity: 0.85; filter: blur(0.4px); }
+.vip-tiles .vt::after { content: ''; position: absolute; inset: 0; backdrop-filter: blur(7px); background: rgba(31,20,9,0.18); }
+.vip-tiles .t1 { transform: rotate(-9deg) translateX(-16px); }
+.vip-tiles .t3 { transform: rotate(9deg) translateX(16px); }
+.vip-tease:hover .t1 { transform: rotate(-14deg) translateX(-30px) translateY(-4px); }
+.vip-tease:hover .t2 { transform: translateY(-8px); }
+.vip-tease:hover .t3 { transform: rotate(14deg) translateX(30px) translateY(-4px); }
+.vip-lock {
+  position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--choc-deep); border: 1px solid var(--gold-light);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 18px rgba(216,196,156,0.45);
+  animation: floatY 4s ease-in-out infinite;
+}
+.vip-copy { flex: 1; min-width: 220px; }
+.vip-copy h5 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin-bottom: 6px; color: var(--gold-light); }
+.vip-copy p { font-size: 13px; opacity: 0.75; margin-bottom: 16px !important; max-width: 380px; }
+.vip-copy .btn { padding: 13px 26px; font-size: 11px; }
+
 .menu-close {
   position: absolute; top: 18px; right: 18px; z-index: 5; width: 40px; height: 40px; border-radius: 50%;
   border: 1px solid rgba(216,196,156,0.5); background: rgba(31,20,9,0.6); color: var(--gold-light);
@@ -775,6 +825,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
     <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
     <nav class="menu-rail" id="menuRail">
       <div class="mr-head">
+        <img src="assets/dm-gold.png" alt="DM" style="height:44px;width:auto;margin-bottom:14px;">
         <div class="serif">The Treatment<br><em>Menu.</em></div>
         <div class="sub">2026 · Caroline Springs</div>
       </div>
@@ -798,7 +849,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
 <header id="hdr">
   <div class="bar">
     <a class="logo" href="#">
-      <span class="mono">DM</span>
+      <img class="mono-img" src="assets/dm-gold.png" alt="DM monogram">
       <span class="word">Dr Mandi <span>Cosmetic Skin Clinic</span></span>
     </a>
     <nav class="links">
@@ -850,7 +901,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
           <textPath href="#circlePath">DOCTOR-LED · CAROLINE SPRINGS · EST. 2020 ·</textPath>
         </text>
       </svg>
-      <span class="stamp-dot serif">DM</span>
+      <span class="stamp-dot serif"><img src="assets/dm-gold.png" alt="DM"></span><span class="orb"></span>
     </div>
     <div class="video-card" data-cursor="view" data-video="assets/reels/retail-range-reel.mp4" data-lbtitle="Inside the clinic">
       <video src="assets/hero-loop.mp4" autoplay muted loop playsinline></video>
@@ -1143,7 +1194,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-logo">DM</div>
+        <div class="foot-logo"><img src="assets/dm-gold.png" alt="DM monogram" style="height:52px;width:auto;"></div>
         <p>Dr Mandi Cosmetic Skin Clinic<br>Doctor-led cosmetic medicine<br>Caroline Springs, Victoria</p>
       </div>
       <div>
@@ -1485,7 +1536,20 @@ if (!reduced) {
         <div class="menu-consult">
           <div class="pull">"Prescription treatments are never priced from a menu - they're tailored to your face, your goals and your clinical suitability."</div>
           <p>Australian advertising regulations mean prescription-only treatments can't be listed or priced publicly - and at this clinic, they wouldn't be anyway. Your options, suitability and investment are discussed openly and precisely with Dr Mandi at your consultation.</p>
-          <p>A $99 consultation, secured with a $50 deposit - and your access to the private gallery follows.</p>
+          <p>A $99 consultation, secured with a $50 deposit.</p>
+          <div class="vip-tease">
+            <div class="vip-tiles">
+              <div class="vt t1"><span>lips</span></div>
+              <div class="vt t2"><span>cheeks</span></div>
+              <div class="vt t3"><span>balance</span></div>
+              <span class="vip-lock"><svg width="15" height="18" viewBox="0 0 26 30" fill="none"><rect x="1" y="12" width="24" height="17" rx="2" stroke="#D8C49C" stroke-width="2"/><path d="M6 12V8.5C6 4.4 9.1 1 13 1s7 3.4 7 7.5V12" stroke="#D8C49C" stroke-width="2"/><circle cx="13" cy="19" r="2.4" fill="#D8C49C"/></svg></span>
+            </div>
+            <div class="vip-copy">
+              <h5>The VIP Gallery</h5>
+              <p>A private before-and-after gallery of Dr Mandi's injectable work - unlocked for you after your consultation.</p>
+              <a href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" class="btn btn-gold"><span class="shine"></span>Consult now · unlock access <span class="arr">&rarr;</span></a>
+            </div>
+          </div>
         </div>`;
       return;
     }
