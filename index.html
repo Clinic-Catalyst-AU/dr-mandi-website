@@ -529,11 +529,20 @@ nav.links a.nav-cta { font-size: 12.5px; padding: 21px 44px; white-space: nowrap
   .compound.active .flask-art path.f3 { transition-delay: 0.95s; }
   .compound.active .flask-art { animation: flaskTip 0.9s var(--ease) 1.5s forwards; }
   .pour-words { display: none; }
+  /* the heading pours out of the beaker word by word, gathering in order */
+  .compound h2.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .cw { display: inline-block; opacity: 0; }
+  .compound.active .cw { animation: wordPour 0.75s var(--ease) forwards; animation-delay: calc(1.7s + var(--i) * 0.22s); }
+  @keyframes wordPour {
+    0% { opacity: 0; transform: translateY(-88px) rotate(-9deg) scale(0.82); }
+    60% { opacity: 1; transform: translateY(5px) rotate(2deg) scale(1.03); }
+    100% { opacity: 1; transform: none; }
+  }
   .compound .cstep { transform: translateY(-44px) scale(0.92); }
   .compound.active .cstep { animation: stepPourM 0.8s var(--ease) forwards; }
-  .compound.active .cstep:nth-child(1) { animation-delay: 2s; }
-  .compound.active .cstep:nth-child(2) { animation-delay: 2.35s; }
-  .compound.active .cstep:nth-child(3) { animation-delay: 2.7s; }
+  .compound.active .cstep:nth-child(1) { animation-delay: 3.6s; }
+  .compound.active .cstep:nth-child(2) { animation-delay: 3.95s; }
+  .compound.active .cstep:nth-child(3) { animation-delay: 4.3s; }
   @keyframes stepPourM {
     0% { opacity: 0; transform: translateY(-44px) scale(0.92); }
     70% { opacity: 1; transform: translateY(4px) scale(1.005); }
@@ -1002,6 +1011,7 @@ body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
   .reveal, .reveal-img, .manifesto .w { opacity: 1 !important; transform: none !important; clip-path: none !important; }
   .fw-text { clip-path: none !important; background: none !important; color: var(--gold-deep) !important; }
   .compound .cstep { opacity: 1 !important; transform: none !important; }
+  .cw { opacity: 1 !important; }
   .pour-words { display: none !important; }
 }
 </style>
@@ -2022,6 +2032,16 @@ if (!reduced) {
       if (r.top > innerHeight || r.bottom < 0) return;
       track.scrollLeft >= max() ? track.scrollTo({left: 0, behavior: 'smooth'}) : track.scrollBy({left: step(), behavior: 'smooth'});
     }, 3500);
+  }
+}
+
+/* compound heading words - poured from the beaker on mobile */
+{
+  const h = document.querySelector('.compound h2');
+  if (h) {
+    const mk = (t) => t.split(' ').map(w => `<span class="cw">${w}</span>`).join(' ');
+    h.innerHTML = mk('Designed for your skin.') + '<br><em>' + mk('Compounded for you.') + '</em>';
+    h.querySelectorAll('.cw').forEach((w, i) => w.style.setProperty('--i', i));
   }
 }
 </script>
