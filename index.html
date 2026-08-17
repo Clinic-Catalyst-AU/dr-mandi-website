@@ -183,13 +183,25 @@ nav.links .lock { color: var(--gold-deep); }
 .hero h1 .line { display: block; overflow: hidden; }
 .hero h1 .line > span { display: inline-block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
 .hero.loaded h1 .line > span { transform: translateY(0); }
-.hero h1 .line:nth-child(2) > span { transition-delay: 0.15s; }
+.hero h1 .line:nth-child(2) > span { transform: none; transition: none; }
+.fw-text {
+  display: inline-block;
+  background: linear-gradient(100deg, var(--gold-deep) 0%, var(--gold-deep) 38%, #F0DFB2 50%, var(--gold-deep) 62%, var(--gold-deep) 100%);
+  background-size: 300% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  clip-path: inset(-10% 102% -15% 0);
+}
+.hero.loaded .fw-text {
+  animation: fwWrite 1.1s var(--ease) 0.65s forwards, fwShimmer 1.5s ease-out 0.65s forwards;
+}
+@keyframes fwWrite { to { clip-path: inset(-10% -3% -15% 0); } }
+@keyframes fwShimmer { from { background-position: 100% 0; } to { background-position: 0% 0; } }
 .hero .fixed-wrap { position: relative; display: inline-block; }
 .hero .fixed-wrap svg { position: absolute; left: 0; bottom: -0.08em; width: 100%; height: 0.22em; overflow: visible; }
 .hero .fixed-wrap svg path {
   fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round;
   stroke-dasharray: 1; stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1.1s var(--ease) 1.1s;
+  transition: stroke-dashoffset 1.1s var(--ease) 1.85s;
 }
 .hero.loaded .fixed-wrap svg path { stroke-dashoffset: 0; }
 .hero .sub { max-width: 470px; font-size: 16.5px; font-weight: 300; line-height: 1.85; color: rgba(36,24,17,0.75); margin-bottom: 46px; }
@@ -743,6 +755,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
   .reveal, .reveal-img, .manifesto .w { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .fw-text { clip-path: none !important; background: none !important; color: var(--gold-deep) !important; }
 }
 </style>
 </head>
@@ -817,7 +830,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
     </div>
     <h1>
       <span class="line"><span>Fresh,</span></span>
-      <span class="line"><span><em class="fixed-wrap">not fixed.<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path pathLength="1" d="M3 10 C 40 4, 80 12, 120 7 S 180 6, 197 9"/></svg></em></span></span>
+      <span class="line"><span><em class="fixed-wrap"><span class="fw-text">not fixed.</span><svg viewBox="0 0 200 14" preserveAspectRatio="none"><path pathLength="1" d="M3 10 C 40 4, 80 12, 120 7 S 180 6, 197 9"/></svg></em></span></span>
     </h1>
     <p class="sub reveal d2">A doctor-led cosmetic skin clinic where every treatment plan begins with a proper assessment of your skin - medical-grade, TGA-approved care, tailored to you and never overdone.</p>
     <div class="hero-ctas reveal d3">
