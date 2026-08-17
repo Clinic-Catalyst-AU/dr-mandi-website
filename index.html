@@ -159,7 +159,7 @@ nav.links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase
 nav.links a:not(.nav-cta)::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--gold-deep); transition: width 0.4s var(--ease); }
 nav.links a:hover::after { width: 100%; }
 nav.links .lock { color: var(--gold-deep); }
-.nav-cta { font-size: 12.5px !important; padding: 19px 40px; white-space: nowrap; line-height: 1; justify-content: center; flex-shrink: 0; }
+nav.links a.nav-cta { font-size: 12.5px; padding: 21px 44px; white-space: nowrap; line-height: 1; justify-content: center; flex-shrink: 0; border-radius: 100px; }
 @media (max-width: 1300px) { nav.links a:not(.nav-cta) { font-size: 11px; letter-spacing: 0.14em; } }
 @media (max-width: 1020px) { nav.links a:not(.nav-cta) { display: none; } }
 
@@ -886,6 +886,38 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
 .bot-input button { border: 0; background: var(--gold); color: var(--choc-deep); padding: 0 22px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; cursor: pointer; font-family: var(--sans); }
 @media (max-width: 640px) { .bot-fab { right: 16px; bottom: 16px; } .bot-panel { right: 16px; bottom: 88px; } }
 
+
+/* mobile hamburger + menu */
+.burger { display: none; background: none; border: 0; cursor: pointer; width: 42px; height: 42px; position: relative; z-index: 220; flex-shrink: 0; padding: 0; }
+.burger span { display: block; width: 24px; height: 2px; background: var(--gold-deep); margin: 5px auto; transition: all 0.35s var(--ease); }
+body.mob-open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--gold-light); }
+body.mob-open .burger span:nth-child(2) { opacity: 0; }
+body.mob-open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--gold-light); }
+@media (max-width: 1020px) { .burger { display: block; } }
+.mob-menu {
+  position: fixed; inset: 0; z-index: 210;
+  background: linear-gradient(180deg, #241811, var(--choc));
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 9vw 40px;
+  opacity: 0; pointer-events: none; transition: opacity 0.45s var(--ease);
+}
+body.mob-open .mob-menu { opacity: 1; pointer-events: auto; }
+.mm-link {
+  font-family: var(--serif); font-size: clamp(1.7rem, 6.5vw, 2.3rem); color: var(--linen);
+  padding: 15px 0; border-bottom: 1px solid rgba(216,196,156,0.15);
+  display: flex; justify-content: space-between; align-items: baseline;
+  opacity: 0; transform: translateY(16px); transition: all 0.5s var(--ease);
+}
+body.mob-open .mm-link { opacity: 1; transform: none; }
+body.mob-open .mm-link:nth-child(2) { transition-delay: 0.06s; }
+body.mob-open .mm-link:nth-child(3) { transition-delay: 0.12s; }
+body.mob-open .mm-link:nth-child(4) { transition-delay: 0.18s; }
+body.mob-open .mm-link:nth-child(5) { transition-delay: 0.24s; }
+body.mob-open .mm-link:nth-child(6) { transition-delay: 0.3s; }
+.mm-link .mm-num { font-style: italic; font-size: 0.85rem; color: var(--gold-light); opacity: 0.7; }
+.mob-menu .btn { margin-top: 30px; align-self: flex-start; }
+.mm-contact { margin-top: 28px; font-size: 12px; color: var(--linen); opacity: 0.55; line-height: 1.9; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
   .reveal, .reveal-img, .manifesto .w { opacity: 1 !important; transform: none !important; clip-path: none !important; }
@@ -947,8 +979,19 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px
       <a href="#">Shop</a>
       <a href="#book" class="btn btn-solid nav-cta"><span class="shine"></span>Book a Consultation</a>
     </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div class="mob-menu" id="mobMenu">
+  <a class="mm-link" href="cosmetic-medicine.html"><span>Treatments</span><span class="mm-num">i.</span></a>
+  <a class="mm-link" href="index.html#concerns"><span>Skin Concerns</span><span class="mm-num">ii.</span></a>
+  <a class="mm-link" href="index.html#mandi"><span>Dr Mandi</span><span class="mm-num">iii.</span></a>
+  <a class="mm-link" href="index.html#gallery"><span>Private Gallery</span><span class="mm-num">iv.</span></a>
+  <a class="mm-link" href="#" data-open-menu><span>Pricing</span><span class="mm-num">v.</span></a>
+  <a class="mm-link" href="#"><span>Shop</span><span class="mm-num">vi.</span></a>
+  <a href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" class="btn btn-gold"><span class="shine"></span>Book a consultation <span class="arr">&rarr;</span></a>
+  <div class="mm-contact">Shop C, 1 Woodward Way, Caroline Springs VIC 3023<br>03 9937 0733 · 0494 304 877</div>
+</div>
 
 <main>
 
@@ -1792,6 +1835,17 @@ if (!reduced) {
       }
     });
   });
+}
+
+/* mobile menu */
+{
+  const burger = document.getElementById('burger');
+  if (burger) {
+    burger.addEventListener('click', () => document.body.classList.toggle('mob-open'));
+    document.querySelectorAll('.mm-link').forEach(a => a.addEventListener('click', () => {
+      setTimeout(() => document.body.classList.remove('mob-open'), 150);
+    }));
+  }
 }
 </script>
 </body>
