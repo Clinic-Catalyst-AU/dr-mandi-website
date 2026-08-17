@@ -134,9 +134,9 @@ header.scrolled .logo .mono { color: var(--gold-deep); }
 .logo .word span { display: block; font-weight: 300; opacity: 0.55; letter-spacing: 0.3em; font-size: 9px; }
 nav.links { display: flex; gap: 40px; align-items: center; }
 nav.links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; position: relative; padding: 4px 0; }
-nav.links a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--gold); transition: width 0.4s var(--ease); }
+nav.links a:not(.nav-cta)::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--gold); transition: width 0.4s var(--ease); }
 nav.links a:hover::after { width: 100%; }
-.nav-cta { font-size: 11px !important; padding: 13px 26px; }
+.nav-cta { font-size: 11px !important; padding: 13px 26px; white-space: nowrap; line-height: 1; justify-content: center; }
 header.dark-nav:not(.scrolled) .nav-cta { background: var(--gold); color: var(--choc-deep); }
 @media (max-width: 1080px) { nav.links a:not(.nav-cta) { display: none; } }
 
@@ -330,7 +330,7 @@ footer { background: var(--choc-deep); color: var(--linen); padding: 60px 0 40px
       <a href="index.html#mandi">Dr Mandi</a>
       <a href="#gallery">Private Gallery</a>
       <a href="#">Shop</a>
-      <a href="#book" class="btn btn-solid nav-cta magnetic"><span class="shine"></span>Book a Consultation</a>
+      <a href="#book" class="btn btn-solid nav-cta"><span class="shine"></span>Book a Consultation</a>
     </nav>
   </div>
 </header>
