@@ -527,15 +527,25 @@ nav.links a.nav-cta { font-size: 12.5px; padding: 21px 44px; white-space: nowrap
   .compound.active .flask-art path { transition-duration: 1.1s; transition-delay: 0.2s; }
   .compound.active .flask-art path.f2 { transition-delay: 0.7s; }
   .compound.active .flask-art path.f3 { transition-delay: 0.95s; }
-  .compound.active .flask-art { animation: flaskTip 0.9s var(--ease) 1.5s forwards; }
+  .compound.active .flask-art { animation: flaskPourM 5.4s var(--ease) 1.3s forwards; transform-origin: 50% 55%; }
+  @keyframes flaskPourM {
+    0% { transform: rotate(0deg); }
+    14% { transform: rotate(-56deg); }
+    72% { transform: rotate(-56deg); }
+    92%, 100% { transform: rotate(0deg); }
+  }
   .pour-words { display: none; }
-  /* the heading pours out of the beaker word by word, gathering in order */
+  /* the heading pours from the spout word by word, gathering in order */
   .compound h2.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .cw { display: inline-block; opacity: 0; }
-  .compound.active .cw { animation: wordPour 0.75s var(--ease) forwards; animation-delay: calc(1.7s + var(--i) * 0.22s); }
+  .compound.active .cw {
+    animation: wordPour 0.9s cubic-bezier(0.25, 0.7, 0.35, 1) forwards;
+    animation-delay: calc(2s + var(--i) * 0.24s);
+  }
   @keyframes wordPour {
-    0% { opacity: 0; transform: translateY(-88px) rotate(-9deg) scale(0.82); }
-    60% { opacity: 1; transform: translateY(5px) rotate(2deg) scale(1.03); }
+    0% { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, -90px)) rotate(-18deg) scale(0.45); }
+    20% { opacity: 1; }
+    70% { transform: translate(calc(var(--dx, 0px) * 0.1), 6px) rotate(3deg) scale(1.04); }
     100% { opacity: 1; transform: none; }
   }
   .compound .cstep { transform: translateY(-44px) scale(0.92); }
@@ -2053,6 +2063,31 @@ if (!reduced) {
     const mk = (t) => t.split(' ').map(w => `<span class="cw">${w}</span>`).join(' ');
     h.innerHTML = mk('Designed for your skin.') + '<br><em>' + mk('Compounded for you.') + '</em>';
     h.querySelectorAll('.cw').forEach((w, i) => w.style.setProperty('--i', i));
+  }
+}
+
+/* mobile: words pour from the flask spout - compute per-word origin deltas */
+{
+  const comp = document.querySelector('.compound');
+  if (comp && matchMedia('(max-width: 800px)').matches) {
+    const setDeltas = () => {
+      const f = comp.querySelector('.flask-wrap');
+      if (!f) return;
+      const fr = f.getBoundingClientRect();
+      const px = fr.left + fr.width * 0.1, py = fr.top + fr.height * 0.48;
+      comp.querySelectorAll('.cw').forEach(w => {
+        const r = w.getBoundingClientRect();
+        w.style.setProperty('--dx', (px - (r.left + r.width / 2)).toFixed(1) + 'px');
+        w.style.setProperty('--dy', (py - (r.top + r.height / 2)).toFixed(1) + 'px');
+      });
+    };
+    if (comp.classList.contains('active')) setDeltas();
+    else {
+      const mo = new MutationObserver(() => {
+        if (comp.classList.contains('active')) { setDeltas(); mo.disconnect(); }
+      });
+      mo.observe(comp, { attributes: true, attributeFilter: ['class'] });
+    }
   }
 }
 </script>
