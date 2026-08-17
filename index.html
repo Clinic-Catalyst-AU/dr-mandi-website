@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Mandi Cosmetic Skin Clinic - Doctor-led cosmetic medicine, Caroline Springs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DR MANDI - LUXE CONCEPT v2 "alive"
+   Off-white linen · antique gold · deep chocolate
+   ============================================================ */
+:root {
+  --linen:       #F7F3EA;
+  --linen-deep:  #EFE8D9;
+  --linen-shade: #E7DECB;
+  --choc:        #2B1C11;
+  --choc-deep:   #1F1409;
+  --choc-soft:   #4E3A29;
+  --gold:        #B3905A;
+  --gold-deep:   #96753F;
+  --gold-light:  #D8C49C;
+  --ink:         #241811;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Manrope', -apple-system, sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--linen);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+@media (pointer: fine) { body.cursor-on, body.cursor-on a, body.cursor-on button, body.cursor-on input { cursor: none; } }
+::selection { background: var(--choc); color: var(--gold-light); }
+
+/* Linen weave + grain */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(43,28,17,0.016) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(43,28,17,0.016) 0 1px, transparent 1px 3px);
+}
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#dust { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
+main, header, footer { position: relative; z-index: 2; }
+
+h1, h2, h3, .serif { font-family: var(--serif); font-weight: 300; line-height: 1.05; letter-spacing: 0.005em; }
+em { font-style: italic; color: var(--gold-deep); }
+.on-dark em { color: var(--gold-light); }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 6vw; }
+
+/* Custom cursor */
+.cur-dot, .cur-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; transform: translate(-50%,-50%); display: none; }
+body.cursor-on .cur-dot, body.cursor-on .cur-ring { display: block; }
+.cur-dot { width: 6px; height: 6px; background: var(--gold-deep); }
+.cur-ring {
+  width: 38px; height: 38px; border: 1px solid rgba(150,117,63,0.65);
+  transition: width 0.35s var(--ease), height 0.35s var(--ease), background 0.35s, border-color 0.35s;
+  display: none; align-items: center; justify-content: center;
+}
+body.cursor-on .cur-ring { display: flex; }
+.cur-ring .cur-label {
+  font-family: var(--sans); font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--choc-deep); opacity: 0; transition: opacity 0.25s; font-weight: 600; white-space: nowrap;
+}
+body.cur-hover .cur-ring { width: 64px; height: 64px; background: rgba(216,196,156,0.28); border-color: var(--gold); backdrop-filter: blur(2px); }
+body.cur-view .cur-ring { width: 84px; height: 84px; background: rgba(216,196,156,0.9); border-color: var(--gold); }
+body.cur-view .cur-ring .cur-label { opacity: 1; }
+body.cur-view .cur-dot { opacity: 0; }
+
+/* Scroll progress */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 300; background: transparent; }
+.progress .fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-light)); transform-origin: left; transform: scaleX(0); }
+
+/* Labels */
+.label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold-deep); display: inline-flex; align-items: center; gap: 14px;
+}
+.label::before { content: ''; width: 34px; height: 1px; background: var(--gold); }
+.label.bare::before { display: none; }
+.on-dark .label { color: var(--gold-light); }
+.on-dark .label::before { background: var(--gold); }
+
+/* Buttons - magnetic + shine */
+.btn {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  padding: 19px 38px; border-radius: 100px;
+  transition: background 0.45s var(--ease), color 0.45s var(--ease), border-color 0.45s var(--ease);
+  border: 1px solid transparent; will-change: transform;
+}
+.btn .shine {
+  position: absolute; top: 0; bottom: 0; width: 40%; left: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgba(255,248,230,0.35), transparent);
+  transform: translateX(-160%) skewX(-18deg);
+}
+.btn:hover .shine { animation: shine 0.9s var(--ease); }
+@keyframes shine { to { transform: translateX(320%) skewX(-18deg); } }
+.btn .arr { transition: transform 0.45s var(--ease); }
+.btn:hover .arr { transform: translateX(5px); }
+.btn-solid { background: var(--choc); color: var(--linen); }
+.btn-solid:hover { background: var(--choc-deep); color: var(--gold-light); }
+.btn-ghost { border-color: rgba(43,28,17,0.35); color: var(--ink); }
+.btn-ghost:hover { background: var(--choc); border-color: var(--choc); color: var(--linen); }
+.btn-gold { background: var(--gold); color: var(--choc-deep); }
+.btn-gold:hover { background: var(--gold-light); }
+.on-dark .btn-ghost { border-color: rgba(247,243,234,0.3); color: var(--linen); }
+.on-dark .btn-ghost:hover { background: var(--linen); color: var(--choc); border-color: var(--linen); }
+
+/* Reveals */
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-img { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease); }
+.reveal-img.active { clip-path: inset(0 0 0 0); }
+.d1 { transition-delay: 0.12s; } .d2 { transition-delay: 0.24s; } .d3 { transition-delay: 0.36s; } .d4 { transition-delay: 0.48s; }
+
+/* Ghost parallax words */
+.ghost {
+  position: absolute; font-family: var(--serif); font-style: italic; pointer-events: none;
+  color: var(--choc); opacity: 0.05; white-space: nowrap; z-index: 0;
+  font-size: clamp(6rem, 14vw, 13rem); line-height: 1;
+}
+.on-dark .ghost { color: var(--gold-light); opacity: 0.045; }
+
+/* ============ NAV ============ */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.5s var(--ease); }
+header .bar { display: flex; align-items: center; justify-content: space-between; padding: 26px 6vw; transition: all 0.5s var(--ease); }
+header.scrolled { background: rgba(247,243,234,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(43,28,17,0.08); }
+header.scrolled .bar { padding: 16px 6vw; }
+.logo { display: flex; align-items: center; gap: 16px; }
+.logo .mono { font-family: var(--serif); font-size: 30px; letter-spacing: 0.04em; color: var(--gold-deep); line-height: 1; }
+.logo .word { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; color: var(--ink); line-height: 1.5; }
+.logo .word span { display: block; font-weight: 300; opacity: 0.55; letter-spacing: 0.3em; font-size: 9px; }
+nav.links { display: flex; gap: 40px; align-items: center; }
+nav.links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; position: relative; padding: 4px 0; }
+nav.links a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--gold-deep); transition: width 0.4s var(--ease); }
+nav.links a:hover::after { width: 100%; }
+nav.links .lock { color: var(--gold-deep); }
+.nav-cta { font-size: 11px !important; padding: 13px 26px; }
+@media (max-width: 1080px) { nav.links a:not(.nav-cta) { display: none; } }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 7fr 5fr; gap: 5vw;
+  align-items: end;
+  padding: 170px 6vw 0;
+  max-width: 1440px; margin: 0 auto;
+  position: relative;
+}
+.hero-copy { padding-bottom: 11vh; position: relative; z-index: 2; }
+.hero-copy::before {
+  content: ''; position: absolute; width: 560px; height: 560px; left: -160px; top: -80px;
+  border-radius: 50%; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle, rgba(216,196,156,0.55), transparent 62%);
+  filter: blur(34px);
+}
+.hero .ghost-word {
+  position: absolute; z-index: 0; left: -3%; bottom: 6%;
+  font-family: var(--serif); font-style: italic; font-size: clamp(8rem, 17vw, 16rem);
+  color: var(--choc); opacity: 0.045; pointer-events: none; line-height: 1;
+}
+.hero h1 { font-size: clamp(3.4rem, 7.2vw, 7rem); margin: 30px 0 34px; letter-spacing: -0.01em; }
+.hero h1 .line { display: block; overflow: hidden; }
+.hero h1 .line > span { display: inline-block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
+.hero.loaded h1 .line > span { transform: translateY(0); }
+.hero h1 .line:nth-child(2) > span { transition-delay: 0.15s; }
+.hero .fixed-wrap { position: relative; display: inline-block; }
+.hero .fixed-wrap svg { position: absolute; left: 0; bottom: -0.08em; width: 100%; height: 0.22em; overflow: visible; }
+.hero .fixed-wrap svg path {
+  fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.1s var(--ease) 1.1s;
+}
+.hero.loaded .fixed-wrap svg path { stroke-dashoffset: 0; }
+.hero .sub { max-width: 470px; font-size: 16.5px; font-weight: 300; line-height: 1.85; color: rgba(36,24,17,0.75); margin-bottom: 46px; }
+.hero-ctas { display: flex; gap: 18px; flex-wrap: wrap; }
+.hero-visual { position: relative; align-self: stretch; display: flex; align-items: flex-end; z-index: 1; }
+.hero-visual .frame { position: relative; width: 100%; aspect-ratio: 3/4; max-height: 78vh; }
+.hero-visual .frame::before {
+  content: ''; position: absolute; inset: 0; transform: translate(22px, 22px);
+  border: 1px solid var(--gold); z-index: 0; transition: transform 0.8s var(--ease);
+}
+.hero-visual .frame:hover::before { transform: translate(14px, 14px); }
+.hero-visual .imgbox { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transform: scale(1.12); transition: transform 2.4s var(--ease); will-change: transform; }
+.hero.loaded .hero-visual img { transform: scale(1.02); }
+.hero-visual .caption {
+  position: absolute; z-index: 2; right: -34px; bottom: 34px;
+  transform: rotate(180deg); writing-mode: vertical-rl;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-deep); font-weight: 500;
+}
+/* floating video card over the portrait */
+.video-card {
+  position: absolute; z-index: 3; left: -19%; bottom: 44px; width: 46%;
+  border: 1px solid var(--gold); background: var(--choc-deep);
+  box-shadow: 0 34px 64px -22px rgba(31,20,9,0.5);
+  opacity: 0; transform: translateY(30px) rotate(-2deg);
+  transition: opacity 1.1s var(--ease) 0.9s, transform 1.1s var(--ease) 0.9s;
+}
+.hero.loaded .video-card { opacity: 1; transform: translateY(0) rotate(-2deg); }
+.video-card:hover { transform: translateY(-6px) rotate(0deg) !important; transition: transform 0.6s var(--ease); }
+.video-card video { width: 100%; display: block; }
+.video-card .vc-label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+  font-weight: 500; color: var(--gold-light);
+}
+.video-card .vc-label .live {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light);
+  animation: blinkDot 2s ease-in-out infinite;
+}
+@keyframes blinkDot { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+/* rotating circular stamp */
+.stamp {
+  position: absolute; z-index: 4; top: -52px; left: -52px; width: 128px; height: 128px;
+  animation: spinSlow 22s linear infinite; pointer-events: none;
+}
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+.stamp .stamp-dot {
+  position: absolute; inset: 42px; border-radius: 50%;
+  border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 15px; color: var(--gold-deep);
+  animation: spinSlow 22s linear infinite reverse;
+}
+@media (max-width: 900px) {
+  .video-card { left: -6px; bottom: 22px; width: 42%; }
+  .video-card .vc-label { padding: 9px 12px; font-size: 8px; }
+  .stamp { left: auto; right: -10px; top: -36px; width: 94px; height: 94px; }
+  .stamp .stamp-dot { inset: 30px; font-size: 12px; }
+}
+.scroll-hint {
+  position: absolute; bottom: 4vh; left: 6vw; display: flex; align-items: center; gap: 14px;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(36,24,17,0.5); font-weight: 500;
+}
+.scroll-hint .rail { width: 1px; height: 44px; background: rgba(43,28,17,0.15); position: relative; overflow: hidden; }
+.scroll-hint .rail::after { content: ''; position: absolute; left: 0; top: -50%; width: 100%; height: 50%; background: var(--gold-deep); animation: railDrop 2s var(--ease) infinite; }
+@keyframes railDrop { 0% { top: -50%; } 60% { top: 100%; } 100% { top: 100%; } }
+.hero-marquee {
+  border-top: 1px solid rgba(43,28,17,0.12); border-bottom: 1px solid rgba(43,28,17,0.12);
+  padding: 20px 0; overflow: hidden; white-space: nowrap;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+.hero-marquee .track { display: inline-block; animation: marquee 36s linear infinite; }
+.hero-marquee:hover .track { animation-play-state: paused; }
+.hero-marquee span { font-family: var(--serif); font-size: 15px; font-style: italic; color: rgba(36,24,17,0.6); margin: 0 28px; }
+.hero-marquee .dot { color: var(--gold); font-style: normal; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* mobile hero media stack - video beside the headline, portrait tiled over it */
+.hero-mobile-stack { display: none; }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 118px; min-height: 0; gap: 0; }
+  .hero-copy { padding-bottom: 40px; }
+  .hero-copy::before { width: 340px; height: 340px; left: -80px; top: -40px; }
+  .hero h1 { font-size: clamp(2.7rem, 11.5vw, 4rem); margin: 22px 0 24px; }
+  .hero .sub { font-size: 15.5px; margin-bottom: 34px; clear: both; }
+  .hero .ghost-word { font-size: 36vw; bottom: auto; top: 2%; left: -6%; }
+  .hero-visual { display: none; }
+  .scroll-hint { display: none; }
+  .hero-mobile-stack {
+    display: block; position: relative;
+    float: right; width: 45%; max-width: 205px;
+    margin: 10px 4px 30px 18px;
+    transform: rotate(-2.5deg);
+    border: 1px solid var(--gold);
+    box-shadow: 0 28px 48px -18px rgba(31,20,9,0.45);
+    background: var(--choc-deep);
+    overflow: hidden;
+    transition: transform 0.5s var(--ease);
+  }
+  .hero-mobile-stack.playing { transform: rotate(0deg); }
+  .hero-mobile-stack video {
+    width: 100%; aspect-ratio: 3/4.2; object-fit: cover; object-position: center top; display: block;
+  }
+  .hm-cover { position: absolute; inset: 0; z-index: 2; cursor: pointer; transition: opacity 0.6s var(--ease); }
+  .hero-mobile-stack.playing .hm-cover { opacity: 0; pointer-events: none; }
+  .hm-cover img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hm-cover::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(31,20,9,0.72));
+  }
+  .hm-play {
+    position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--gold-light); border: 1px solid var(--gold-deep);
+    display: flex; align-items: center; justify-content: center; padding-left: 4px;
+    box-shadow: 0 10px 24px rgba(31,20,9,0.45);
+  }
+  .hm-play::before {
+    content: ''; position: absolute; inset: -1px; border-radius: 50%;
+    border: 1px solid var(--gold-light); opacity: 0.6;
+    animation: pulseRing 2.6s var(--ease) infinite;
+  }
+  .hm-hint {
+    position: absolute; z-index: 2; left: 0; right: 0; bottom: 10px; text-align: center;
+    font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600;
+    color: var(--gold-light);
+  }
+}
+
+/* ============ DUAL JOURNEY ============ */
+.journey { padding: 110px 0 130px; position: relative; }
+.journey-head { text-align: center; margin-bottom: 64px; position: relative; z-index: 1; }
+.journey-head h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin-top: 26px; }
+.journey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 1180px; margin: 0 auto; padding: 0 6vw; position: relative; z-index: 1; }
+.journey-card {
+  position: relative; padding: 0;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.6s var(--ease);
+  overflow: hidden; transform-style: preserve-3d; will-change: transform;
+}
+.jc-body {
+  position: relative; padding: 40px 46px 46px; flex: 1;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 28px; z-index: 1;
+}
+.journey-card:hover { box-shadow: 0 40px 70px -30px rgba(31,20,9,0.4); }
+.journey-card .spot {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.5s; z-index: 0;
+  background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(216,196,156,0.22), transparent 65%);
+}
+.journey-card:hover .spot { opacity: 1; }
+.journey-card > *:not(.spot):not(.jc-media) { position: relative; z-index: 1; }
+.journey-card .num { position: absolute; bottom: 24px; right: 40px; font-family: var(--serif); font-size: 4rem; line-height: 1; opacity: 0.12; }
+.journey-card h3 { font-size: clamp(1.9rem, 2.6vw, 2.5rem); margin: 20px 0 16px; max-width: 340px; }
+.journey-card p { font-size: 15px; max-width: 360px; opacity: 0.78; margin-bottom: 34px; }
+.jc-dark { background: var(--choc); color: var(--linen); }
+.jc-dark::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.35; pointer-events: none;
+  background: radial-gradient(90% 90% at 85% 10%, rgba(179,144,90,0.35), transparent 60%);
+}
+.jc-light { background: var(--linen-deep); border: 1px solid var(--gold); }
+.journey-card .go { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+.jc-dark .go { color: var(--gold-light); }
+.jc-light .go { color: var(--gold-deep); }
+.journey-card .go .line { width: 40px; height: 1px; background: currentColor; transition: width 0.5s var(--ease); }
+.journey-card:hover .go .line { width: 70px; }
+/* before/after slider - drag the bar to reveal */
+.ba-slider {
+  position: relative; width: 100%; aspect-ratio: 16/10.5; overflow: hidden;
+  touch-action: none; cursor: ew-resize; user-select: none; -webkit-user-select: none;
+  --pos: 50%;
+  border-bottom: 1px solid rgba(179,144,90,0.45);
+}
+.ba-slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.ba-after { clip-path: inset(0 0 0 var(--pos)); }
+.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--gold-light); z-index: 3; box-shadow: 0 0 14px rgba(31,20,9,0.5); }
+.ba-handle .knob {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(31,20,9,0.78); border: 1px solid var(--gold-light);
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  color: var(--gold-light); font-size: 13px; font-family: var(--sans);
+  transition: transform 0.35s var(--ease), background 0.35s;
+}
+.ba-slider:hover .knob { transform: translate(-50%, -50%) scale(1.12); background: rgba(31,20,9,0.92); }
+.ba-tag {
+  position: absolute; top: 12px; z-index: 2;
+  font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+  padding: 6px 13px; border-radius: 100px;
+  background: rgba(31,20,9,0.62); color: var(--linen);
+  border: 1px solid rgba(216,196,156,0.4); backdrop-filter: blur(4px);
+}
+.ba-tag-b { left: 12px; } .ba-tag-a { right: 12px; }
+.journey-card h3, .journey-card p { max-width: 100%; }
+@media (max-width: 800px) { .journey-grid { grid-template-columns: 1fr; } .jc-body { padding: 34px 34px 40px; } }
+
+/* ============ MANIFESTO (karaoke) ============ */
+.manifesto { padding: 40px 0 150px; position: relative; }
+.manifesto .inner { max-width: 900px; margin: 0 auto; padding: 0 6vw; text-align: center; position: relative; z-index: 1; }
+.manifesto p.big {
+  font-family: var(--serif); font-size: clamp(1.9rem, 3.6vw, 3.1rem); line-height: 1.42; font-weight: 300;
+}
+.manifesto .w { opacity: 0.14; transition: opacity 0.5s ease, color 0.5s ease; }
+.manifesto .w.lit { opacity: 1; }
+.manifesto .w.gold-w { font-style: italic; }
+.manifesto .w.gold-w.lit { color: var(--gold-deep); }
+
+/* ============ CLINIC ============ */
+.clinic { padding: 20px 0 130px; position: relative; }
+.clinic-grid { display: grid; grid-template-columns: 5fr 6fr; gap: 7vw; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 6vw; position: relative; z-index: 1; }
+.clinic-media { position: relative; cursor: pointer; }
+.clinic-media video.loop {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center top;
+  display: block; background: var(--choc-deep);
+}
+.clinic-media .cm-label {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 0;
+  padding: 30px 18px 14px; font-size: 9px; letter-spacing: 0.3em; color: var(--linen);
+  text-transform: uppercase; font-weight: 500;
+  background: linear-gradient(180deg, transparent, rgba(31,20,9,0.65));
+  pointer-events: none;
+}
+.clinic-media .play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 92px; height: 92px; border-radius: 50%;
+  border: 1px solid var(--gold-deep); display: flex; align-items: center; justify-content: center;
+  transition: all 0.5s var(--ease); background: rgba(247,243,234,0.25); backdrop-filter: blur(4px);
+}
+.clinic-media .play::before {
+  content: ''; position: absolute; inset: -1px; border-radius: 50%;
+  border: 1px solid var(--gold-deep); opacity: 0.5;
+  animation: pulseRing 2.6s var(--ease) infinite;
+}
+@keyframes pulseRing { 0% { transform: scale(1); opacity: 0.5; } 80% { transform: scale(1.55); opacity: 0; } 100% { opacity: 0; } }
+.clinic-media:hover .play { transform: translate(-50%, -50%) scale(1.1); background: rgba(247,243,234,0.55); }
+.clinic-media .play svg { margin-left: 4px; }
+.clinic-copy h2 { font-size: clamp(2.3rem, 3.6vw, 3.4rem); margin: 26px 0 28px; }
+.clinic-copy p { color: rgba(36,24,17,0.75); max-width: 520px; margin-bottom: 20px; font-size: 16px; }
+.clinic-stats { display: flex; margin-top: 44px; border-top: 1px solid rgba(43,28,17,0.15); }
+.clinic-stats .stat { padding: 26px 40px 0 0; margin-right: 40px; border-right: 1px solid rgba(43,28,17,0.12); }
+.clinic-stats .stat:last-child { border-right: 0; margin-right: 0; }
+.clinic-stats .n { font-family: var(--serif); font-size: 2.6rem; color: var(--gold-deep); line-height: 1.1; }
+.clinic-stats .t { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; opacity: 0.6; margin-top: 6px; }
+@media (max-width: 900px) { .clinic-grid { grid-template-columns: 1fr; } .clinic-stats { flex-wrap: wrap; } }
+
+/* ============ COMPOUNDING ============ */
+.compound {
+  position: relative; padding: 130px 0 140px; overflow: hidden;
+  background: var(--linen-deep);
+  border-top: 1px solid rgba(43,28,17,0.08);
+}
+.compound .inner { max-width: 860px; margin: 0 auto; padding: 0 6vw; text-align: center; position: relative; z-index: 1; }
+.compound h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); margin: 26px 0 24px; }
+.compound > .inner > p { color: rgba(36,24,17,0.75); max-width: 640px; margin: 0 auto 64px; font-size: 16.5px; }
+.comp-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(43,28,17,0.15); }
+.cstep { padding: 36px 30px 0; border-right: 1px solid rgba(43,28,17,0.12); transition: transform 0.5s var(--ease); }
+.cstep:last-child { border-right: 0; }
+.cstep:hover { transform: translateY(-6px); }
+.cstep .cnum { font-family: var(--serif); font-style: italic; font-size: 2.2rem; color: var(--gold-deep); line-height: 1; margin-bottom: 14px; }
+.cstep h4 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; margin-bottom: 10px; }
+.cstep p { font-size: 13.5px; opacity: 0.68; }
+.flask-art { position: absolute; left: 4vw; bottom: 40px; width: 150px; opacity: 0.45; pointer-events: none; }
+.flask-art path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.compound.active .flask-art path { transition: stroke-dashoffset 2.2s var(--ease) 0.3s; stroke-dashoffset: 0; }
+.compound.active .flask-art path.f2 { transition-delay: 1.4s; }
+.compound.active .flask-art path.f3 { transition-delay: 1.8s; }
+@media (max-width: 800px) { .comp-steps { grid-template-columns: 1fr; } .cstep { border-right: 0; border-bottom: 1px solid rgba(43,28,17,0.12); padding-bottom: 30px; } .flask-art { display: none; } }
+
+/* ============ TREATMENTS ============ */
+.treatments { background: var(--choc); color: var(--linen); padding: 130px 0 140px; position: relative; overflow: hidden; }
+.treatments::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+  background: radial-gradient(70% 60% at 20% 0%, rgba(179,144,90,0.16), transparent 60%);
+}
+.treatments .wrap { position: relative; z-index: 1; }
+.treat-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 70px; flex-wrap: wrap; }
+.treat-head h2 { font-size: clamp(2.4rem, 4.2vw, 3.8rem); margin-top: 26px; max-width: 560px; }
+.treat-head p { max-width: 380px; font-size: 15px; opacity: 0.65; }
+.treat-list { border-top: 1px solid rgba(247,243,234,0.14); }
+.treat-row {
+  display: grid; grid-template-columns: 80px 1fr auto; gap: 30px; align-items: center;
+  padding: 34px 10px; border-bottom: 1px solid rgba(247,243,234,0.14);
+  transition: background 0.5s var(--ease), padding 0.5s var(--ease); cursor: pointer;
+}
+.treat-row:hover { background: rgba(179,144,90,0.08); padding-left: 26px; }
+.treat-row .idx { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--gold-light); opacity: 0.75; }
+.treat-row h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); transition: color 0.4s, transform 0.5s var(--ease); }
+.treat-row:hover h3 { color: var(--gold-light); transform: translateX(6px); }
+.treat-row .desc { font-size: 13.5px; opacity: 0.55; max-width: 620px; margin-top: 8px; font-weight: 300; }
+.treat-row .arrow { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); opacity: 0; transform: translateX(-14px); transition: all 0.5s var(--ease); }
+.treat-row:hover .arrow { opacity: 1; transform: translateX(0); }
+.treat-note { margin-top: 44px; opacity: 0.55; max-width: 640px; font-style: italic; font-family: var(--serif); font-size: 15px; }
+@media (max-width: 700px) { .treat-row { grid-template-columns: 1fr; gap: 8px; } .treat-row .idx { display: none; } }
+
+/* Floating hover preview (follows cursor over rows) */
+.float-preview {
+  position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none;
+  width: 230px; aspect-ratio: 4/5;
+  transform: translate(-50%, -55%) scale(0.6) rotate(-4deg); opacity: 0;
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  background: linear-gradient(155deg, #3A2718 0%, var(--choc-deep) 70%);
+  border: 1px solid var(--gold); overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+}
+.float-preview.show { opacity: 1; transform: translate(-50%, -55%) scale(1) rotate(2deg); }
+.float-preview video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.float-preview .fp-meta {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 26px 16px 12px; display: flex; align-items: baseline; gap: 10px;
+  background: linear-gradient(180deg, transparent, rgba(31,20,9,0.85));
+}
+.float-preview .fp-num { font-family: var(--serif); font-style: italic; font-size: 1.5rem; color: var(--gold-light); line-height: 1; }
+.float-preview .fp-word { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--linen); opacity: 0.9; }
+.float-preview .fp-watch {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 100px;
+  background: rgba(31,20,9,0.7); border: 1px solid rgba(216,196,156,0.5);
+  font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--gold-light);
+}
+.float-preview .fp-watch::before { content: '▶'; font-size: 7px; }
+.float-preview::after {
+  content: ''; position: absolute; inset: 10px; border: 1px solid rgba(216,196,156,0.25); pointer-events: none; z-index: 3;
+}
+@media (pointer: coarse) { .float-preview { display: none; } }
+
+/* Video lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center;
+  background: rgba(31,20,9,0.92); backdrop-filter: blur(10px);
+  opacity: 0; pointer-events: none; transition: opacity 0.45s var(--ease);
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lb-inner { position: relative; height: min(86vh, 900px); aspect-ratio: 9/16; }
+.lb-inner video {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  border: 1px solid var(--gold); background: #000;
+  transform: scale(0.94); transition: transform 0.5s var(--ease);
+}
+.lightbox.open .lb-inner video { transform: scale(1); }
+.lb-title {
+  position: absolute; left: 0; right: 0; top: -44px; text-align: center;
+  font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--gold-light);
+}
+.lb-close {
+  position: absolute; top: -48px; right: -8px; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(216,196,156,0.5); background: transparent; color: var(--gold-light);
+  font-size: 20px; line-height: 1; cursor: pointer; transition: all 0.35s;
+  font-family: var(--sans);
+}
+.lb-close:hover { background: var(--gold); color: var(--choc-deep); }
+@media (max-width: 640px) { .lb-inner { height: auto; width: 92vw; max-height: 80vh; aspect-ratio: 9/16; } .lb-close { right: 0; } }
+
+/* ============ TREATMENT MENU (popup) ============ */
+.menu-modal {
+  position: fixed; inset: 0; z-index: 480; display: flex; align-items: center; justify-content: center;
+  background: rgba(31,20,9,0.9); backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none; transition: opacity 0.5s var(--ease);
+}
+.menu-modal.open { opacity: 1; pointer-events: auto; }
+.menu-panel {
+  position: relative; width: min(1020px, 94vw); height: min(760px, 88vh);
+  background: linear-gradient(180deg, #241811 0%, var(--choc) 100%);
+  border: 1px solid var(--gold); color: var(--linen);
+  display: grid; grid-template-columns: 250px 1fr; overflow: hidden;
+  transform: translateY(26px) scale(0.98); transition: transform 0.55s var(--ease);
+  box-shadow: 0 60px 120px -40px rgba(0,0,0,0.7);
+}
+.menu-modal.open .menu-panel { transform: translateY(0) scale(1); }
+.menu-rail {
+  border-right: 1px solid rgba(216,196,156,0.2); padding: 46px 0 30px;
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+.menu-rail .mr-head { padding: 0 34px 26px; }
+.menu-rail .mr-head .serif { font-size: 1.7rem; line-height: 1.15; }
+.menu-rail .mr-head .sub { font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-light); opacity: 0.8; margin-top: 8px; font-weight: 500; }
+.menu-tab {
+  text-align: left; background: none; border: 0; cursor: pointer; color: var(--linen);
+  font-family: var(--serif); font-size: 1.06rem; padding: 13px 34px;
+  border-left: 2px solid transparent; opacity: 0.55; transition: all 0.35s var(--ease);
+  display: flex; align-items: baseline; gap: 12px;
+}
+.menu-tab .ti { font-style: italic; font-size: 0.8rem; color: var(--gold-light); }
+.menu-tab:hover { opacity: 0.9; }
+.menu-tab.on { opacity: 1; border-left-color: var(--gold); background: rgba(179,144,90,0.08); }
+.menu-body { overflow-y: auto; padding: 52px 56px 40px; scrollbar-width: thin; scrollbar-color: rgba(179,144,90,0.5) transparent; }
+.menu-body h3 { font-size: 2rem; margin-bottom: 6px; }
+.menu-body .cat-sub { font-family: var(--serif); font-style: italic; color: var(--gold-light); opacity: 0.85; margin-bottom: 34px; font-size: 1.05rem; }
+.mgroup { margin-bottom: 34px; }
+.mgroup h4 {
+  font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600;
+  color: var(--gold-light); margin-bottom: 4px; padding-bottom: 10px; border-bottom: 1px solid rgba(216,196,156,0.2);
+}
+.mrow { display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(247,243,234,0.07); }
+.mrow .mn { font-family: var(--serif); font-size: 1.12rem; }
+.mrow .mnote { display: block; font-family: var(--sans); font-size: 11px; opacity: 0.5; margin-top: 3px; font-weight: 300; letter-spacing: 0.02em; }
+.mrow .dots { flex: 1; border-bottom: 1px dotted rgba(216,196,156,0.35); transform: translateY(-4px); min-width: 30px; }
+.mrow .mp { font-family: var(--serif); font-size: 1.1rem; color: var(--gold-light); white-space: nowrap; }
+.menu-consult { max-width: 480px; }
+.menu-consult .pull {
+  font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.5;
+  color: var(--gold-light); border-left: 1px solid var(--gold); padding-left: 24px; margin: 26px 0 28px;
+}
+.menu-consult p { opacity: 0.75; font-size: 14.5px; margin-bottom: 16px; }
+.menu-foot {
+  position: absolute; left: 250px; right: 0; bottom: 0;
+  padding: 16px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  background: rgba(31,20,9,0.96);
+  border-top: 1px solid rgba(216,196,156,0.25);
+  box-shadow: 0 -22px 34px rgba(31,20,9,0.55);
+  pointer-events: none;
+}
+.menu-foot > * { pointer-events: auto; }
+.menu-foot .mf-note { font-family: var(--serif); font-style: italic; font-size: 13px; opacity: 0.55; }
+.menu-body { padding-bottom: 110px; }
+.menu-close {
+  position: absolute; top: 18px; right: 18px; z-index: 5; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(216,196,156,0.5); background: rgba(31,20,9,0.6); color: var(--gold-light);
+  font-size: 19px; line-height: 1; cursor: pointer; transition: all 0.35s; font-family: var(--sans);
+}
+.menu-close:hover { background: var(--gold); color: var(--choc-deep); }
+@media (max-width: 860px) {
+  .menu-panel { grid-template-columns: 1fr; height: 92vh; width: 94vw; }
+  .menu-rail { flex-direction: row; overflow-x: auto; overflow-y: hidden; border-right: 0; border-bottom: 1px solid rgba(216,196,156,0.2); padding: 18px 64px 18px 12px; align-items: center; gap: 2px; flex: none; }
+  .menu-rail .mr-head { display: none; }
+  .menu-tab { padding: 8px 14px; border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; font-size: 0.95rem; }
+  .menu-tab.on { border-bottom-color: var(--gold); }
+  .menu-body { padding: 30px 26px 120px; }
+  .menu-foot { left: 0; padding: 14px 26px; justify-content: center; }
+  .menu-foot .mf-note { display: none; }
+}
+
+/* ============ CONCERNS ============ */
+.concerns-sec { padding: 130px 0; position: relative; }
+.concerns-sec .treat-list { border-top: 1px solid rgba(43,28,17,0.15); position: relative; z-index: 1; }
+.concerns-sec .treat-row { border-bottom: 1px solid rgba(43,28,17,0.15); }
+.concerns-sec .treat-row:hover { background: rgba(179,144,90,0.07); }
+.concerns-sec .treat-row .idx { color: var(--gold-deep); }
+.concerns-sec .treat-row h3 { color: var(--ink); }
+.concerns-sec .treat-row:hover h3 { color: var(--gold-deep); }
+.concerns-sec .treat-row .desc { opacity: 0.6; }
+
+/* ============ DR MANDI ============ */
+.mandi { padding: 140px 0 120px; background: var(--linen-deep); border-top: 1px solid rgba(43,28,17,0.08); border-bottom: 1px solid rgba(43,28,17,0.08); position: relative; overflow: hidden; }
+.mandi-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 7vw; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 6vw; position: relative; z-index: 1; }
+.mandi-copy h2 { font-size: clamp(2.4rem, 4vw, 3.7rem); margin: 26px 0 12px; }
+.mandi-copy .creds { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; color: var(--gold-deep); margin-bottom: 30px; }
+.mandi-copy p { color: rgba(36,24,17,0.78); max-width: 540px; margin-bottom: 20px; font-size: 16px; }
+.mandi-copy .pull {
+  font-family: var(--serif); font-style: italic; font-size: 1.5rem; line-height: 1.45;
+  color: var(--choc); border-left: 1px solid var(--gold); padding-left: 28px; margin: 36px 0; max-width: 520px;
+}
+.mandi-visual { position: relative; }
+.mandi-visual .frame { position: relative; aspect-ratio: 3/4; }
+.mandi-visual .frame::before {
+  content: ''; position: absolute; inset: 0; transform: translate(-22px, 22px);
+  background: var(--linen); border: 1px solid var(--gold); z-index: 0; transition: transform 0.8s var(--ease);
+}
+.mandi-visual .frame:hover::before { transform: translate(-14px, 14px); }
+.mandi-visual .imgbox { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.mandi-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 1.6s var(--ease); }
+.mandi-visual .frame:hover img { transform: scale(1.045); }
+/* self-drawing face contour */
+.face-art { position: absolute; right: -30px; top: 40px; width: 300px; opacity: 0.5; z-index: 0; pointer-events: none; }
+.face-art path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.mandi.active .face-art path { transition: stroke-dashoffset 2.6s var(--ease) 0.3s; stroke-dashoffset: 0; }
+.mandi.active .face-art path.p2 { transition-delay: 1.2s; }
+.mandi.active .face-art path.p3 { transition-delay: 1.9s; }
+.team-line { max-width: 1280px; margin: 90px auto 0; padding: 0 6vw; position: relative; z-index: 1; }
+.team-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 40px; }
+.team-card { border: 1px solid rgba(43,28,17,0.15); padding: 38px 40px; transition: all 0.5s var(--ease); background: rgba(247,243,234,0.5); position: relative; overflow: hidden; }
+.team-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.6s var(--ease); }
+.team-card:hover { border-color: var(--gold); background: var(--linen); transform: translateY(-4px); }
+.team-card:hover::before { transform: scaleX(1); }
+.team-card h4 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; margin-bottom: 4px; }
+.team-card .role { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-deep); font-weight: 500; margin-bottom: 14px; }
+.team-card p { font-size: 14px; opacity: 0.7; }
+@media (max-width: 900px) { .mandi-grid { grid-template-columns: 1fr; } .mandi-visual { order: -1; } .team-cards { grid-template-columns: 1fr; } .face-art { display: none; } }
+
+/* ============ PRIVATE GALLERY ============ */
+.gallery { background: linear-gradient(180deg, var(--choc-deep) 0%, var(--choc) 100%); color: var(--linen); padding: 130px 0; position: relative; overflow: hidden; }
+.gallery::before {
+  content: ''; position: absolute; width: 620px; height: 620px; border-radius: 50%;
+  background: var(--gold); filter: blur(160px); opacity: 0.13; top: -200px; right: -160px;
+}
+.gallery .inner { max-width: 820px; margin: 0 auto; text-align: center; padding: 0 6vw; position: relative; z-index: 1; }
+.gallery .keyhole {
+  width: 74px; height: 74px; margin: 0 auto 36px; border-radius: 50%;
+  border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
+  transition: all 0.5s var(--ease); animation: floatY 5s ease-in-out infinite;
+}
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.gallery .keyhole:hover { background: rgba(179,144,90,0.15); }
+.gallery.gate-focus .keyhole { box-shadow: 0 0 40px rgba(216,196,156,0.35); border-color: var(--gold-light); }
+.gallery h2 { font-size: clamp(2.2rem, 3.8vw, 3.4rem); margin-bottom: 22px; }
+.gallery p.lede { opacity: 0.7; max-width: 560px; margin: 0 auto 40px; font-size: 15.5px; }
+/* frosted teaser tiles */
+.teaser-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 560px; margin: 0 auto 44px; }
+.teaser {
+  aspect-ratio: 4/5; position: relative; overflow: hidden; border: 1px solid rgba(216,196,156,0.25);
+  background:
+    radial-gradient(60% 50% at 50% 30%, rgba(216,196,156,0.4), transparent 70%),
+    linear-gradient(160deg, #4A3423, #2B1C11);
+  transition: transform 0.6s var(--ease), border-color 0.6s;
+}
+.teaser::after {
+  content: ''; position: absolute; inset: 0; backdrop-filter: blur(14px);
+  background: rgba(31,20,9,0.25);
+}
+.teaser .tag {
+  position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--gold-light); opacity: 0.85;
+}
+.teaser:hover { transform: translateY(-6px); border-color: var(--gold); }
+.teaser:nth-child(2) { transform: translateY(10px); }
+.teaser:nth-child(2):hover { transform: translateY(4px); }
+.gate {
+  display: flex; max-width: 460px; margin: 0 auto; border: 1px solid rgba(216,196,156,0.4);
+  border-radius: 100px; overflow: hidden; background: rgba(247,243,234,0.05); backdrop-filter: blur(6px);
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.gate:focus-within { border-color: var(--gold-light); box-shadow: 0 0 34px rgba(179,144,90,0.25); }
+.gate input { flex: 1; background: transparent; border: 0; outline: 0; padding: 18px 28px; color: var(--linen); font-family: var(--sans); font-size: 13px; letter-spacing: 0.12em; min-width: 0; }
+.gate input::placeholder { color: rgba(247,243,234,0.45); letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px; }
+.gate button {
+  border: 0; background: var(--gold); color: var(--choc-deep); padding: 0 34px;
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+  cursor: pointer; transition: background 0.4s;
+}
+.gate button:hover { background: var(--gold-light); }
+.gallery .fine { margin-top: 26px; font-size: 14px; opacity: 0.45; font-style: italic; font-family: var(--serif); }
+
+/* ============ CONSULT CTA ============ */
+.consult { padding: 150px 0 140px; text-align: center; position: relative; }
+.consult .inner { position: relative; z-index: 1; }
+.consult h2 { font-size: clamp(2.6rem, 5vw, 4.6rem); margin: 28px 0 26px; }
+.consult p { max-width: 560px; margin: 0 auto 48px; color: rgba(36,24,17,0.72); }
+.consult .price-line { display: inline-flex; align-items: baseline; gap: 18px; margin-bottom: 48px; font-family: var(--serif); }
+.consult .price-line .p { font-size: 3rem; color: var(--gold-deep); }
+.consult .price-line .d { font-size: 15px; font-style: italic; opacity: 0.65; }
+
+/* ============ FOOTER ============ */
+footer { background: var(--choc-deep); color: var(--linen); padding: 90px 0 40px; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 70px; }
+.foot-grid h5 { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-light); font-weight: 500; margin-bottom: 22px; }
+.foot-grid a, .foot-grid p { display: block; font-size: 14px; opacity: 0.65; margin-bottom: 12px; transition: opacity 0.3s; font-weight: 300; }
+.foot-grid a:hover { opacity: 1; }
+.foot-logo { font-family: var(--serif); font-size: 2rem; color: var(--gold-light); margin-bottom: 18px; }
+.foot-base { border-top: 1px solid rgba(247,243,234,0.1); padding-top: 30px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 11.5px; opacity: 0.4; }
+@media (max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .reveal, .reveal-img, .manifesto .w { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="fill" id="progressFill"></div></div>
+<canvas id="dust"></canvas>
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"><span class="cur-label" id="curLabel">View</span></div>
+<div class="float-preview" id="floatPreview">
+  <video id="fpVid" muted loop playsinline preload="none"></video>
+  <div class="fp-meta"><span class="fp-num" id="fpNum">i.</span><span class="fp-word" id="fpWord"></span></div>
+  <span class="fp-watch">Watch</span>
+</div>
+<div class="menu-modal" id="menuModal" role="dialog" aria-label="Treatment menu">
+  <div class="menu-panel">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+    <nav class="menu-rail" id="menuRail">
+      <div class="mr-head">
+        <div class="serif">The Treatment<br><em>Menu.</em></div>
+        <div class="sub">2026 · Caroline Springs</div>
+      </div>
+    </nav>
+    <div class="menu-body" id="menuBody"></div>
+    <div class="menu-foot">
+      <span class="mf-note">Every treatment begins with a proper, doctor-led assessment.</span>
+      <a href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" class="btn btn-gold" style="padding: 14px 30px;"><span class="shine"></span>Book a consultation <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <div class="lb-title" id="lbTitle"></div>
+    <button class="lb-close" id="lbClose" aria-label="Close video">&times;</button>
+    <video id="lbVid" controls playsinline></video>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="bar">
+    <a class="logo" href="#">
+      <span class="mono">DM</span>
+      <span class="word">Dr Mandi <span>Cosmetic Skin Clinic</span></span>
+    </a>
+    <nav class="links">
+      <a href="injectables.html">Treatments</a>
+      <a href="#concerns">Skin Concerns</a>
+      <a href="#mandi">Dr Mandi</a>
+      <a href="#gallery" class="lock">Private Gallery</a>
+      <a href="#" data-open-menu>Pricing</a>
+      <a href="#">Shop</a>
+      <a href="#book" class="btn btn-solid nav-cta magnetic"><span class="shine"></span>Book a Consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <span class="ghost-word">fresh</span>
+  <div class="hero-copy">
+    <span class="label reveal">Doctor-led cosmetic medicine · Caroline Springs</span>
+    <div class="hero-mobile-stack" id="heroMobileStack">
+      <video src="assets/reels/retail-range-reel.mp4" playsinline preload="metadata"></video>
+      <div class="hm-cover">
+        <img src="assets/dr-mandi-portrait.jpg" alt="Dr Mandi Sandhu">
+        <span class="hm-play"><svg width="15" height="18" viewBox="0 0 20 24" fill="none"><path d="M0 0L20 12L0 24V0Z" fill="#1F1409"/></svg></span>
+        <span class="hm-hint">Inside the clinic</span>
+      </div>
+    </div>
+    <h1>
+      <span class="line"><span>Fresh,</span></span>
+      <span class="line"><span><em class="fixed-wrap">not fixed.<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path pathLength="1" d="M3 10 C 40 4, 80 12, 120 7 S 180 6, 197 9"/></svg></em></span></span>
+    </h1>
+    <p class="sub reveal d2">A doctor-led cosmetic skin clinic where every treatment plan begins with a proper assessment of your skin - medical-grade, TGA-approved care, tailored to you and never overdone.</p>
+    <div class="hero-ctas reveal d3">
+      <a href="#journey" class="btn btn-solid magnetic"><span class="shine"></span>Begin your plan <span class="arr">&rarr;</span></a>
+      <a href="#mandi" class="btn btn-ghost magnetic"><span class="shine"></span>Meet Dr Mandi</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="frame reveal-img">
+      <div class="imgbox"><img src="assets/dr-mandi-portrait.jpg" alt="Dr Mandi Sandhu, General Practitioner and Cosmetic Physician"></div>
+      <span class="caption">Dr Mandi Sandhu · MBBS FRACGP</span>
+    </div>
+    <div class="stamp">
+      <svg viewBox="0 0 128 128">
+        <defs><path id="circlePath" d="M 64,64 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"/></defs>
+        <text fill="#96753F" font-size="10.5" font-family="Manrope, sans-serif" letter-spacing="2.6" font-weight="500">
+          <textPath href="#circlePath">DOCTOR-LED · CAROLINE SPRINGS · EST. 2020 ·</textPath>
+        </text>
+      </svg>
+      <span class="stamp-dot serif">DM</span>
+    </div>
+    <div class="video-card" data-cursor="view" data-video="assets/reels/retail-range-reel.mp4" data-lbtitle="Inside the clinic">
+      <video src="assets/hero-loop.mp4" autoplay muted loop playsinline></video>
+      <span class="vc-label"><span class="live"></span> Inside the clinic · tap for sound</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span class="rail"></span> Scroll</div>
+</section>
+
+<div class="hero-marquee">
+  <div class="track">
+    <span>Doctor-led</span><span class="dot">·</span><span>A proper assessment, before anything else</span><span class="dot">·</span><span>Medical-grade, TGA-approved</span><span class="dot">·</span><span>Compounded in-house, for you</span><span class="dot">·</span><span>Caroline Springs, est. 2020</span><span class="dot">·</span>
+    <span>Doctor-led</span><span class="dot">·</span><span>A proper assessment, before anything else</span><span class="dot">·</span><span>Medical-grade, TGA-approved</span><span class="dot">·</span><span>Compounded in-house, for you</span><span class="dot">·</span><span>Caroline Springs, est. 2020</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- DUAL JOURNEY -->
+<section class="journey" id="journey">
+  <span class="ghost" data-speed="0.08" style="top: 10%; left: -4%;">begin</span>
+  <div class="journey-head reveal">
+    <span class="label bare">Where would you like to begin?</span>
+    <h2>Two ways in. <em>One considered plan.</em></h2>
+  </div>
+  <div class="journey-grid">
+    <a href="injectables.html" class="journey-card jc-dark on-dark reveal tilt" data-cursor="view">
+      <span class="spot"></span>
+      <div class="ba-slider" aria-label="Before and after comparison - drag to reveal">
+        <img class="ba-before" src="assets/ba-prf-before.jpg" alt="Before PRF treatment">
+        <img class="ba-after" src="assets/ba-prf-after.jpg" alt="Four weeks after first PRF session">
+        <span class="ba-tag ba-tag-b">Before</span><span class="ba-tag ba-tag-a">After</span>
+        <div class="ba-handle"><span class="knob">&lsaquo;&nbsp;&rsaquo;</span></div>
+      </div>
+      <div class="jc-body">
+        <div>
+          <span class="label">I know what I'm here for</span>
+          <h3>Explore our treatments</h3>
+          <p>Injectables, laser, skin treatments, regenerative medicine, threads and more - each delivered under a doctor-led plan, tailored to your skin.</p>
+        </div>
+        <span class="go"><span class="line"></span> View treatments</span>
+        <span class="num serif">I</span>
+      </div>
+    </a>
+    <a href="#concerns" class="journey-card jc-light reveal d1 tilt" data-cursor="view">
+      <span class="spot"></span>
+      <div class="ba-slider" aria-label="Before and after comparison - drag to reveal">
+        <img class="ba-before" src="assets/ba-acne-before.jpg" alt="Before acne treatment">
+        <img class="ba-after" src="assets/ba-acne-after.jpg" alt="After acne treatment">
+        <span class="ba-tag ba-tag-b">Before</span><span class="ba-tag ba-tag-a">After</span>
+        <div class="ba-handle"><span class="knob">&lsaquo;&nbsp;&rsaquo;</span></div>
+      </div>
+      <div class="jc-body">
+        <div>
+          <span class="label">I'd like some guidance</span>
+          <h3>Start with your skin concern</h3>
+          <p>Not sure what you need? Begin with what's bothering you - pigmentation, texture, wrinkles - and let a proper assessment shape the plan.</p>
+        </div>
+        <span class="go"><span class="line"></span> Explore concerns</span>
+        <span class="num serif">II</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="inner">
+    <p class="big" id="manifesto">Your skin is examined the way a doctor examines it - <g>thoroughly,</g> <g>honestly,</g> and with your whole health in view. The plan is built around <g>your face,</g> <g>your pace,</g> and how you want to feel when you look in the <g>mirror.</g></p>
+  </div>
+</section>
+
+<!-- THE CLINIC -->
+<section class="clinic">
+  <span class="ghost" data-speed="-0.06" style="bottom: 6%; right: -2%;">est. 2020</span>
+  <div class="clinic-grid">
+    <div class="clinic-media reveal-img" data-cursor="view" id="clinicMedia" data-video="assets/reels/prf-regenerative-reel.mp4" data-lbtitle="Dr Mandi · Inside the clinic">
+      <video class="loop" src="assets/clinic-loop.mp4" autoplay muted loop playsinline></video>
+      <span class="cm-label">Dr Mandi · Inside the clinic · tap for sound</span>
+      <div class="play"><svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M0 0L20 12L0 24V0Z" fill="#96753F"/></svg></div>
+    </div>
+    <div class="clinic-copy">
+      <span class="label reveal">The clinic</span>
+      <h2 class="reveal d1">Calm, clinical<br><em>and quietly confident.</em></h2>
+      <p class="reveal d2">Dr Mandi Cosmetic Skin Clinic has been part of Caroline Springs for six years - a doctor-led practice built around one belief: the plan should be shaped by your skin, never by whichever machine happens to be free that day.</p>
+      <p class="reveal d2">Every pathway starts with a genuine, unhurried skin assessment. From there, a tailored plan draws on a medical-grade device suite - laser, ultrasound, microneedling, LED and regenerative treatments - chosen for your skin and your pace.</p>
+      <div class="clinic-stats reveal d3">
+        <div class="stat"><div class="n" data-count="6">0</div><div class="t">Years in Caroline Springs</div></div>
+        <div class="stat"><div class="n" data-count="1">0</div><div class="t">Doctor-led plan, built for you</div></div>
+        <div class="stat"><div class="n" data-count="10" data-suffix="+">0</div><div class="t">Medical-grade modalities</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOUNDING -->
+<section class="compound" id="compound">
+  <svg class="flask-art" viewBox="0 0 160 200" aria-hidden="true">
+    <path class="f1" pathLength="1" d="M62 22 h36 M70 22 v52 L38 148 c-6 14 2 26 16 26 h52 c14 0 22 -12 16 -26 L90 74 v-52"/>
+    <path class="f2" pathLength="1" d="M52 118 h56"/>
+    <path class="f3" pathLength="1" d="M66 140 c4 -6 10 -6 14 0 s10 6 14 0"/>
+  </svg>
+  <div class="inner">
+    <span class="label bare reveal">The compounding difference</span>
+    <h2 class="reveal d1">Designed for your skin.<br><em>Compounded in-house.</em></h2>
+    <p class="reveal d2">Dr Mandi works with a compounding pharmacy - so your treatment isn't lifted off a shelf. High-quality, TGA-approved active ingredients, prescribed by a doctor in clinic, designed around the clinical outcomes set for your skin - and compounded in-house, for you and only you.</p>
+    <div class="comp-steps">
+      <div class="cstep reveal">
+        <div class="cnum">i.</div>
+        <h4>Assessed</h4>
+        <p>A proper, doctor-led look at your skin - before anything else.</p>
+      </div>
+      <div class="cstep reveal d1">
+        <div class="cnum">ii.</div>
+        <h4>Designed</h4>
+        <p>Your clinical outcomes, set with Dr Mandi - not a standard protocol.</p>
+      </div>
+      <div class="cstep reveal d2">
+        <div class="cnum">iii.</div>
+        <h4>Compounded</h4>
+        <p>Your formulation, prepared in-house - made for you, and only you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section class="treatments on-dark" id="treatments">
+  <span class="ghost" data-speed="0.05" style="top: 6%; right: -3%;">tailored</span>
+  <div class="wrap">
+    <div class="treat-head">
+      <div>
+        <span class="label reveal">Treatments</span>
+        <h2 class="reveal d1">Considered care,<br><em>across every modality.</em></h2>
+      </div>
+      <p class="reveal d2">Each treatment sits inside a doctor-led plan - assessed first, tailored always, and delivered with medical-grade, TGA-approved equipment.</p>
+    </div>
+    <div class="treat-list">
+      <a class="treat-row reveal" href="injectables.html" data-cursor="view" data-num="i." data-video="assets/reels/biofiller-education-reel.mp4" data-word="natural, balanced, yours">
+        <span class="idx">No. 01</span>
+        <div><h3>Injectables &amp; Cosmetic Medicine</h3><div class="desc">Wrinkle reduction, lip enhancement and volume restoration - discussed properly at consultation, always with a natural result in mind.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="ii." data-video="assets/reels/laser-resurfacing-reel.mp4" data-word="light, tone &amp; clarity">
+        <span class="idx">No. 02</span>
+        <div><h3>Laser &amp; Light</h3><div class="desc">Alma Harmony XL PRO and LED therapies for pigmentation, tone and texture - mapped to your skin at assessment.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="iii." data-video="assets/reels/prf-regenerative-reel.mp4" data-word="your skin's own biology">
+        <span class="idx">No. 03</span>
+        <div><h3>Regenerative Medicine</h3><div class="desc">PRP, PRF, Rejuran and exosome therapies that work with your skin's own biology.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="iv." data-video="assets/reels/rf-microneedling-reel.mp4" data-word="renewal, resurfaced">
+        <span class="idx">No. 04</span>
+        <div><h3>Skin Treatments &amp; Peels</h3><div class="desc">Microneedling, medical-grade peels and the Hydra Plus facial - strength and type tailored to you, never a standard peel for everyone.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="v." data-video="assets/reels/best-results-reel.mp4" data-word="quiet, considered lift">
+        <span class="idx">No. 05</span>
+        <div><h3>Threads &amp; Lifting</h3><div class="desc">PDO and lifting threads, with Ultraformer III skin tightening - considered, doctor-led options for firmness.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="vi." data-video="assets/reels/prp-hair-growth-reel.mp4" data-word="at your own pace">
+        <span class="idx">No. 06</span>
+        <div><h3>Body &amp; Hair Restoration</h3><div class="desc">Body sculpting and hair restoration programs, planned around your goals at your own pace.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+    <p class="treat-note reveal">Advertising rules mean injectable brands and prices are never listed publicly - your options, suitability and pricing are discussed properly with Dr Mandi at consultation.</p>
+    <div class="reveal" style="margin-top: 34px;"><a href="#" class="btn btn-ghost magnetic" data-open-menu><span class="shine"></span>View the treatment menu <span class="arr">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- SKIN CONCERNS -->
+<section class="concerns-sec" id="concerns">
+  <span class="ghost" data-speed="0.07" style="top: 4%; left: -3%;">mirror</span>
+  <div class="journey-head reveal">
+    <span class="label bare">Skin concerns</span>
+    <h2>Start with what<br><em>you see in the mirror.</em></h2>
+  </div>
+  <div class="wrap">
+    <div class="treat-list">
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="01" data-video="assets/reels/laser-resurfacing-reel.mp4" data-word="Dr Mandi's signature interest">
+        <span class="idx">No. 01</span>
+        <div><h3>Pigmentation</h3><div class="desc">Dr Mandi's signature interest - sun damage, melasma and uneven tone, assessed properly and treated in staged, tailored plans.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="02" data-video="assets/reels/biofiller-education-reel.mp4" data-word="fresh, never frozen">
+        <span class="idx">No. 02</span>
+        <div><h3>Wrinkles &amp; Fine Lines</h3><div class="desc">Softening lines while keeping your face moving naturally - fresh, never frozen.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="03" data-video="assets/reels/rf-microneedling-reel.mp4" data-word="smooth, even, luminous">
+        <span class="idx">No. 03</span>
+        <div><h3>Uneven Texture &amp; Pores</h3><div class="desc">For skin that feels dull or crepey, and makeup that won't sit evenly.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="04" data-video="assets/reels/rejuran-reel.mp4" data-word="managed medically">
+        <span class="idx">No. 04</span>
+        <div><h3>Acne &amp; Congestion</h3><div class="desc">Active breakouts and the marks they leave behind - managed medically, at your pace.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a class="treat-row reveal" href="#" data-cursor="view" data-num="05" data-video="assets/reels/best-results-reel.mp4" data-word="subtle &amp; balanced">
+        <span class="idx">No. 05</span>
+        <div><h3>Loss of Lip Volume</h3><div class="desc">Subtle, balanced enhancement - discussed properly, in person, at consultation.</div></div>
+        <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DR MANDI -->
+<section class="mandi" id="mandi">
+  <svg class="face-art" viewBox="0 0 200 320" aria-hidden="true">
+    <path class="p1" pathLength="1" d="M118 18 C 92 26, 82 52, 86 76 C 89 94, 82 102, 74 112 C 70 117, 72 121, 79 122 C 84 123, 85 127, 83 133 C 82 138, 84 141, 88 142 C 92 143, 92 147, 90 152 C 88 158, 92 163, 99 164 C 107 165, 110 171, 108 181 C 106 194, 112 204, 126 207 C 138 210, 150 206, 158 198"/>
+    <path class="p2" pathLength="1" d="M100 70 C 108 64, 120 63, 128 68"/>
+    <path class="p3" pathLength="1" d="M104 84 C 110 80, 118 80, 123 84 C 118 88, 110 88, 104 84 Z"/>
+  </svg>
+  <div class="mandi-grid">
+    <div class="mandi-copy">
+      <span class="label reveal">About Dr Mandi</span>
+      <h2 class="reveal d1">Medicine first.<br><em>Aesthetics, by devotion.</em></h2>
+      <div class="creds reveal d1">MBBS · FRACGP · DCH · DRANZCOG · Dip. Aesthetic Medicine (AAAM)</div>
+      <p class="reveal d2">Dr Mandi Sandhu is a practising General Practitioner and Cosmetic Physician. Her days are spent in real medicine - and it's that clinical grounding she brings to every aesthetic consultation. Skin is examined the way a doctor examines it: thoroughly, honestly, and with your whole health in view.</p>
+      <p class="reveal d2">She has a special interest in pigmentation, skin rejuvenation and regenerative medicine, and has spent six years building a clinic where patients are assessed, not sold to.</p>
+      <div class="pull reveal d3">"A proper skin assessment, before anything else. The plan is built around your skin - never around a machine."</div>
+      <a href="#book" class="btn btn-ghost magnetic reveal d3"><span class="shine"></span>Book with Dr Mandi <span class="arr">&rarr;</span></a>
+    </div>
+    <div class="mandi-visual">
+      <div class="frame reveal-img">
+        <div class="imgbox"><img src="assets/dr-mandi-portrait.jpg" alt="Dr Mandi Sandhu"></div>
+      </div>
+    </div>
+  </div>
+  <div class="team-line">
+    <span class="label reveal">The clinical team</span>
+    <div class="team-cards">
+      <div class="team-card reveal">
+        <h4>Daniela Nguyen</h4>
+        <div class="role">Dermal Clinician</div>
+        <p>Has a special interest in skin treatments, tattoo removal, ablative and resurfacing treatments, and scar management.</p>
+      </div>
+      <div class="team-card reveal d1">
+        <h4>Charleen Spiteri</h4>
+        <div class="role">Dermal Clinician</div>
+        <p>Has a special interest in skin treatments, regenerative medicine, resurfacing treatments and vascular concerns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVATE GALLERY -->
+<section class="gallery on-dark" id="gallery">
+  <div class="inner">
+    <div class="keyhole reveal">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none"><rect x="1" y="12" width="24" height="17" rx="2" stroke="#B3905A" stroke-width="1.4"/><path d="M6 12V8.5C6 4.4 9.1 1 13 1s7 3.4 7 7.5V12" stroke="#B3905A" stroke-width="1.4"/><circle cx="13" cy="19" r="2.4" fill="#B3905A"/><path d="M13 21v3.4" stroke="#B3905A" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </div>
+    <span class="label reveal" style="justify-content:center; display:inline-flex;">For consulted patients</span>
+    <h2 class="reveal d1">The private gallery</h2>
+    <p class="lede reveal d2">Our injectables gallery is shared privately with patients after their consultation - a considered look at Dr Mandi's work, in keeping with Australian advertising regulations. Your access details are provided at the clinic.</p>
+    <div class="teaser-row reveal d2">
+      <div class="teaser"><span class="tag">lips</span></div>
+      <div class="teaser"><span class="tag">cheeks</span></div>
+      <div class="teaser"><span class="tag">balance</span></div>
+    </div>
+    <form class="gate reveal d3" onsubmit="return false;">
+      <input type="password" placeholder="Enter your access code" aria-label="Gallery access code" id="gateInput">
+      <button type="submit">Enter</button>
+    </form>
+    <p class="fine reveal d4">Provided after consultation · Please treat your access as personal to you</p>
+  </div>
+</section>
+
+<!-- CONSULT CTA -->
+<section class="consult" id="book">
+  <span class="ghost" data-speed="0.06" style="top: 14%; right: 2%;">begin</span>
+  <div class="inner">
+    <span class="label bare reveal">Begin properly</span>
+    <h2 class="reveal d1">Your skin, <em>in good hands.</em></h2>
+    <p class="reveal d2">Every plan starts with a genuine, doctor-led skin assessment - a proper look at your skin, your history and what you'd like to feel when you look in the mirror. No pressure, at your own pace.</p>
+    <div class="price-line reveal d2"><span class="p">$99</span><span class="d">consultation · $50 deposit secures your time</span></div>
+    <div class="reveal d3">
+      <a href="https://bookings.gettimely.com/drmandicosmeticskinclinic/book" class="btn btn-gold magnetic"><span class="shine"></span>Book your assessment <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="on-dark">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">DM</div>
+        <p>Dr Mandi Cosmetic Skin Clinic<br>Doctor-led cosmetic medicine<br>Caroline Springs, Victoria</p>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <p>Shop C, 1 Woodward Way<br>Caroline Springs VIC 3023</p>
+        <a href="tel:+61399370733">03 9937 0733</a>
+        <a href="tel:+61494304877">0494 304 877</a>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="injectables.html">Treatments</a>
+        <a href="#concerns">Skin Concerns</a>
+        <a href="#mandi">About</a>
+        <a href="#">Shop</a>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <a href="https://instagram.com/drmandi_aesthetics">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="mailto:info@drmandicosmeticsc.com.au">Email us</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 Dr Mandi Cosmetic Skin Clinic. All rights reserved.</span>
+      <span>All treatments are subject to consultation and clinical suitability.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const fine = matchMedia('(pointer: fine)').matches;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Nav scroll state + progress bar */
+const hdr = document.getElementById('hdr');
+const progressFill = document.getElementById('progressFill');
+addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', scrollY > 40);
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progressFill.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+}, { passive: true });
+
+/* Reveals (threshold 0 - clip-path'd elements never reach a ratio threshold in Chrome) */
+const els = [...document.querySelectorAll('.reveal, .reveal-img, .mandi, .compound')];
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+}, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+els.forEach(el => io.observe(el));
+const sweep = () => els.forEach(el => {
+  if (!el.classList.contains('active') && el.getBoundingClientRect().top < innerHeight * 0.95) {
+    el.classList.add('active'); io.unobserve(el);
+  }
+});
+addEventListener('scroll', sweep, { passive: true });
+addEventListener('load', sweep);
+
+/* Hero load choreography */
+addEventListener('load', () => requestAnimationFrame(() => document.getElementById('hero').classList.add('loaded')));
+setTimeout(() => document.getElementById('hero').classList.add('loaded'), 900); // fallback
+
+/* Custom cursor */
+if (fine && !reduced) {
+  document.body.classList.add('cursor-on');
+  const dot = document.getElementById('curDot'), ring = document.getElementById('curRing');
+  let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+  addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, input, .clinic-media').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      document.body.classList.add(el.dataset.cursor === 'view' ? 'cur-view' : 'cur-hover');
+    });
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cur-hover', 'cur-view'));
+  });
+}
+
+/* Gold dust canvas */
+if (!reduced) {
+  const cv = document.getElementById('dust'), ctx = cv.getContext('2d');
+  let W, H, parts = [];
+  const resize = () => {
+    W = cv.width = innerWidth * devicePixelRatio; H = cv.height = innerHeight * devicePixelRatio;
+    cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+  };
+  resize(); addEventListener('resize', resize);
+  const N = Math.min(46, Math.floor(innerWidth / 30));
+  for (let i = 0; i < N; i++) parts.push({
+    x: Math.random(), y: Math.random(), r: 0.8 + Math.random() * 1.9,
+    vy: 0.00016 + Math.random() * 0.00034, sway: Math.random() * Math.PI * 2,
+    sp: 0.004 + Math.random() * 0.008, tw: Math.random() * Math.PI * 2
+  });
+  (function drawDust() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of parts) {
+      p.y -= p.vy; p.sway += p.sp; p.tw += 0.02;
+      if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+      const a = 0.14 + Math.abs(Math.sin(p.tw)) * 0.3;
+      ctx.beginPath();
+      ctx.arc((p.x + Math.sin(p.sway) * 0.012) * W, p.y * H, p.r * devicePixelRatio, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(179,144,90,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(drawDust);
+  })();
+}
+
+/* Magnetic buttons */
+if (fine && !reduced) document.querySelectorAll('.magnetic').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    const r = el.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2);
+    el.style.transform = `translate(${dx * 0.18}px, ${dy * 0.3}px)`;
+  });
+  el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+});
+
+/* Card tilt + spotlight (suspended while using a before/after slider) */
+if (fine && !reduced) document.querySelectorAll('.tilt').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    if (e.target.closest('.ba-slider')) { card.style.transform = ''; return; }
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    card.style.setProperty('--mx', (px * 100) + '%');
+    card.style.setProperty('--my', (py * 100) + '%');
+    card.style.transform = `perspective(900px) rotateY(${(px - 0.5) * 5}deg) rotateX(${(0.5 - py) * 5}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+/* Before/after sliders - drag the bar, tile link stays intact elsewhere */
+document.querySelectorAll('.ba-slider').forEach(sl => {
+  const set = x => {
+    const r = sl.getBoundingClientRect();
+    const p = Math.max(3, Math.min(97, (x - r.left) / r.width * 100));
+    sl.style.setProperty('--pos', p + '%');
+  };
+  let dragging = false;
+  sl.addEventListener('pointerdown', e => {
+    dragging = true; sl.setPointerCapture(e.pointerId); set(e.clientX);
+    e.preventDefault(); e.stopPropagation();
+  });
+  sl.addEventListener('pointermove', e => { if (dragging) set(e.clientX); });
+  ['pointerup', 'pointercancel'].forEach(ev => sl.addEventListener(ev, () => { dragging = false; }));
+  sl.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); });
+});
+
+/* Floating VIDEO preview over rows */
+if (fine && !reduced) {
+  const fp = document.getElementById('floatPreview');
+  const fpNum = document.getElementById('fpNum'), fpWord = document.getElementById('fpWord');
+  const fpVid = document.getElementById('fpVid');
+  let fx = 0, fy = 0, tx = 0, ty = 0;
+  addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  (function fpLoop() {
+    fx += (tx - fx) * 0.12; fy += (ty - fy) * 0.12;
+    fp.style.left = fx + 'px'; fp.style.top = fy + 'px';
+    requestAnimationFrame(fpLoop);
+  })();
+  document.querySelectorAll('[data-num]').forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      fpNum.textContent = row.dataset.num;
+      fpWord.innerHTML = row.dataset.word;
+      if (row.dataset.video) {
+        const abs = new URL(row.dataset.video, location.href).href;
+        if (fpVid.src !== abs) { fpVid.src = row.dataset.video; }
+        fpVid.play().catch(() => {});
+      }
+      fp.classList.add('show');
+    });
+    row.addEventListener('mouseleave', () => { fp.classList.remove('show'); fpVid.pause(); });
+  });
+}
+
+/* Lightbox - click a row to watch its film */
+{
+  const lb = document.getElementById('lightbox');
+  const lbVid = document.getElementById('lbVid');
+  const lbTitle = document.getElementById('lbTitle');
+  const close = () => { lb.classList.remove('open'); lbVid.pause(); lbVid.removeAttribute('src'); lbVid.load(); };
+  document.getElementById('lbClose').addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  document.querySelectorAll('[data-video]').forEach(row => {
+    row.addEventListener('click', e => {
+      e.preventDefault();
+      lbTitle.textContent = row.dataset.lbtitle || (row.querySelector('h3') ? row.querySelector('h3').textContent : '');
+      lbVid.src = row.dataset.video;
+      lb.classList.add('open');
+      lbVid.play().catch(() => {});
+    });
+  });
+}
+
+/* Manifesto karaoke */
+(() => {
+  const el = document.getElementById('manifesto');
+  const goldTag = /^<g>/;
+  // split words, keeping <g> markers as gold words
+  const html = el.innerHTML.trim().split(/\s+/).map(w => {
+    const gold = w.includes('<g>') || w.includes('</g>');
+    const clean = w.replace(/<\/?g>/g, '');
+    return `<span class="w${gold ? ' gold-w' : ''}">${clean}</span>`;
+  }).join(' ');
+  el.innerHTML = html;
+  const words = [...el.querySelectorAll('.w')];
+  const update = () => {
+    const r = el.getBoundingClientRect();
+    const prog = Math.min(1, Math.max(0, (innerHeight * 0.82 - r.top) / (r.height + innerHeight * 0.35)));
+    const n = Math.floor(prog * words.length);
+    words.forEach((w, i) => w.classList.toggle('lit', i < n));
+  };
+  addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* Ghost parallax */
+if (!reduced) {
+  const ghosts = [...document.querySelectorAll('.ghost')];
+  const gUpdate = () => ghosts.forEach(g => {
+    const r = g.parentElement.getBoundingClientRect();
+    const off = (r.top + r.height/2 - innerHeight/2) * parseFloat(g.dataset.speed || 0.06);
+    g.style.transform = `translateY(${off}px)`;
+  });
+  addEventListener('scroll', gUpdate, { passive: true });
+  gUpdate();
+}
+
+/* Stat count-up */
+{
+  const stats = [...document.querySelectorAll('[data-count]')];
+  const sio = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    sio.unobserve(e.target);
+    const end = +e.target.dataset.count, suf = e.target.dataset.suffix || '';
+    const t0 = performance.now(), dur = 1400;
+    (function tick(t) {
+      const p = Math.min(1, (t - t0) / dur), ease = 1 - Math.pow(1 - p, 3);
+      e.target.textContent = Math.round(end * ease) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }), { threshold: 0.5 });
+  stats.forEach(s => sio.observe(s));
+}
+
+/* Treatment Menu popup */
+{
+  const MENU = [
+    { id: 'cosmetic', tab: 'Cosmetic Medicine', num: 'i.', sub: 'Injectables, skin boosters & collagen stimulators', consult: true },
+    { id: 'regen', tab: 'Regenerative', num: 'ii.', sub: 'PRP & PRF - your skin’s own biology', groups: [
+      { h: 'PRP · Skin & Hair Restoration', rows: [
+        ['PRP + LED', 'Pack of 3 - $1,500 ($500 ea)', '$550'],
+        ['PRP + microneedling + LED', 'Pack of 3 - $1,650 ($550 ea)', '$600'],
+        ['PRP + microneedling + LED + exosome', 'Pack of 3 - $1,999 ($666 ea)', '$699']]},
+      { h: 'PRF · Under Eye & Nasolabial', rows: [
+        ['PRF', 'Pack of 3 - $1,500 ($500 ea)', '$550']]}]},
+    { id: 'skin', tab: 'Skin & Peels', num: 'iii.', sub: 'Resurfacing, microneedling & medical-grade peels', groups: [
+      { h: 'Dermapen Microneedling · Face & Neck', rows: [
+        ['Korean glass skin · Rejuran booster', 'Pack of 3 - $1,197 ($399 ea)', '$449'],
+        ['Tailored serum cocktail', 'Pack of 3 - $999 ($333 ea)', '$350'],
+        ['RF microneedling + tailored technology', 'Pack of 3 - $1,290 ($430 ea)', '$449']]},
+      { h: 'Dermaceutic Peels', rows: [
+        ['Purifying peel', '', '$120'],
+        ['Milk peel', '', '$180'],
+        ['Crystal clear peel', '', '$200'],
+        ['Cosmo correction peel', '', '$200'],
+        ['Advanced cosmo peel · 15% upwards', '', '$250'],
+        ['Mela Forte pigmentation peel', 'Pack of 3 - $999 ($333 ea)', '$350']]},
+      { h: 'Herbal Aktiv Peels', rows: [
+        ['Herbal Aktiv B · beauty peel', '', '$279'],
+        ['Herbal Aktiv P · phyto peel', '', '$299'],
+        ['Herbal Aktiv C · corrective peel', 'Includes 3 homecare products & post-peel care', '$799']]},
+      { h: 'Skin Tag / Mole / Milia Removal', rows: [
+        ['Fewer than 5', '', '$199'], ['5 - 10', '', '$299'], ['10 - 15', '', '$399']]}]},
+    { id: 'laser', tab: 'Laser', num: 'iv.', sub: 'Alma Harmony XL PRO', groups: [
+      { h: 'Laser Packages', rows: [
+        ['Clear Lift thermal rejuvenation', 'Pack of 3 - $1,347 ($449 ea)', '$499'],
+        ['Pigmentation correction / melasma', 'Pack of 3 - $999 ($333 ea)', '$350'],
+        ['Dye VL · vascular, rosacea, freckles', 'Pack of 3 - $999 ($333 ea)', '$350'],
+        ['iPixel resurfacing', 'Pack of 3 - $1,649 ($550 ea)', '$579']]},
+      { h: 'Tattoo Removal', rows: [
+        ['Up to 50 cm²', '5 sessions $569 · 10 sessions $1,000', 'from $119'],
+        ['Up to 150 cm²', '5 sessions $1,000 · 10 sessions $1,800', 'from $249'],
+        ['Up to 300 cm²', '5 sessions $1,500 · 10 sessions $2,500', 'from $349']]}]},
+    { id: 'body', tab: 'Body Sculpting', num: 'v.', sub: 'Contour & tone', groups: [
+      { h: 'RF & Fat Cavitation', rows: [
+        ['Stomach / love handles', '', '$199'], ['Upper arms', '', '$149'], ['Bra line / upper back', '', '$129'],
+        ['Thighs', '', '$249'], ['Buttocks', '', '$199']]},
+      { h: 'EMS Muscle Toning', rows: [
+        ['Stomach', '', '$190'], ['Arms / thighs', '', '$280'], ['Buttocks', '', '$280'], ['All handles · 2 areas', '', '$370']]},
+      { h: 'Six-Session Programs', rows: [
+        ['Stomach / love handles', '$333 per session', '$1,999'],
+        ['Arms · thighs · buttocks', '$417 per session', '$2,499'],
+        ['Two treatment areas', '$533 per session', '$3,199']]},
+      { h: 'Pelvic Floor Strengthening', rows: [
+        ['Single session', 'Save 10% on a pack of 6', '$299']]}]},
+    { id: 'hair', tab: 'Laser Hair Removal', num: 'vi.', sub: 'Save 10% on packs of 4 · 20% on packs of 6', groups: [
+      { h: 'Most Requested · Per Session', rows: [
+        ['Underarms', '', '$18.20'], ['Upper lip', '', '$18.20'], ['Brazilian', '', '$35.50'],
+        ['Face', '', '$43.20'], ['Face & neck', '', '$57.60'], ['Half legs', '', '$86.40'],
+        ['Full legs', '', '$100.80'], ['Full arms', '', '$100.80']]},
+      { h: 'Combinations & Full Body', rows: [
+        ['Brazilian & underarms', '', '$45.00'],
+        ['Full legs, Brazilian & underarms', '', '$120.49'],
+        ['Half body · upper or lower', '', 'from $199.80'],
+        ['Full body', '', '$599.80']]}]},
+    { id: 'facials', tab: 'Facials & Energy', num: 'vii.', sub: 'Glow & lift', groups: [
+      { h: 'Signature Medifacials', rows: [
+        ['Acne Clarity · Sensitive Calm · Renew · Glow', 'Signature $259 · Deluxe $299', 'from $259'],
+        ['Pack of 6 · per session', 'Signature $229 · Deluxe $269', 'from $229'],
+        ['Pack of 12 · per session', 'Signature $219 · Deluxe $259', 'from $219']]},
+      { h: 'Hydra Plus Facials', rows: [
+        ['Hydra Plus Advanced', 'LED, ultrasonic scrub, hydradermabrasion, serum infusion', '$199'],
+        ['Hydra Plus Signature', 'With enzyme peel', '$249'],
+        ['Hydra Plus Deluxe', 'With enzyme peel & BioAlginate mask', '$299']]},
+      { h: 'LED Light Therapy', rows: [
+        ['Single session', 'Pack of 6 - $480 · pack of 12 - $940', '$89']]},
+      { h: 'Ultraformer HIFU', rows: [
+        ['Ultimate full face & neck lift', '', '$1,499'],
+        ['Full face · forehead, periorbital, cheeks', '', '$849'],
+        ['Hollywood full face lift', '', '$799'],
+        ['Jawline · lower face & below chin', '', '$749'],
+        ['Necklines', '', '$449'],
+        ['Lower face lift · double chin', '', 'from $399'],
+        ['Targeted areas', 'Brow lift, forehead, eye bags, nasolabial & more', 'from $199']]}]}
+  ];
+  const modal = document.getElementById('menuModal');
+  const rail = document.getElementById('menuRail');
+  const body = document.getElementById('menuBody');
+  const esc = t => t; // trusted local data
+  const render = cat => {
+    rail.querySelectorAll('.menu-tab').forEach(b => b.classList.toggle('on', b.dataset.id === cat.id));
+    if (cat.consult) {
+      body.innerHTML = `<h3>Cosmetic <em>Medicine.</em></h3>
+        <div class="cat-sub">${cat.sub}</div>
+        <div class="menu-consult">
+          <div class="pull">"Prescription treatments are never priced from a menu - they're tailored to your face, your goals and your clinical suitability."</div>
+          <p>Australian advertising regulations mean prescription-only treatments can't be listed or priced publicly - and at this clinic, they wouldn't be anyway. Your options, suitability and investment are discussed openly and precisely with Dr Mandi at your consultation.</p>
+          <p>A $99 consultation, secured with a $50 deposit - and your access to the private gallery follows.</p>
+        </div>`;
+      return;
+    }
+    body.innerHTML = `<h3>${cat.tab.replace(/ (?=[^ ]*$)/, ' <em>') + (cat.tab.includes(' ') ? '</em>' : '')}.</h3>
+      <div class="cat-sub">${cat.sub}</div>` +
+      cat.groups.map(g => `<div class="mgroup"><h4>${g.h}</h4>` +
+        g.rows.map(r => `<div class="mrow"><span class="mn">${r[0]}${r[1] ? `<span class="mnote">${r[1]}</span>` : ''}</span><span class="dots"></span><span class="mp">${r[2]}</span></div>`).join('') +
+      `</div>`).join('');
+    body.scrollTop = 0;
+  };
+  MENU.forEach(cat => {
+    const b = document.createElement('button');
+    b.className = 'menu-tab'; b.dataset.id = cat.id;
+    b.innerHTML = `<span class="ti">${cat.num}</span> ${cat.tab}`;
+    b.addEventListener('click', () => render(cat));
+    rail.appendChild(b);
+  });
+  const openMenu = e => { if (e) e.preventDefault(); render(MENU[0]); modal.classList.add('open'); };
+  const closeMenu = () => modal.classList.remove('open');
+  document.querySelectorAll('[data-open-menu]').forEach(el => el.addEventListener('click', openMenu));
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  modal.addEventListener('click', e => { if (e.target === modal) closeMenu(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+}
+
+/* Mobile hero - portrait cover, press play for the film with sound */
+{
+  const hm = document.getElementById('heroMobileStack');
+  if (hm) {
+    const vid = hm.querySelector('video');
+    hm.querySelector('.hm-cover').addEventListener('click', e => {
+      e.stopPropagation();
+      hm.classList.add('playing');
+      vid.controls = true; vid.muted = false;
+      vid.play().catch(() => {});
+    });
+  }
+}
+
+/* Gallery gate focus glow */
+{
+  const g = document.getElementById('gateInput');
+  const sec = document.getElementById('gallery');
+  if (g) {
+    g.addEventListener('focus', () => sec.classList.add('gate-focus'));
+    g.addEventListener('blur', () => sec.classList.remove('gate-focus'));
+  }
+}
+</script>
+</body>
+</html>
